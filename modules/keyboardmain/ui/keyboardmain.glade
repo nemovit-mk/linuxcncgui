@@ -1,0 +1,1860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-requires gladevcp 0.0 -->
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkImage" id="AUTO">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">4_1.png</property>
+  </object>
+  <object class="GtkImage" id="CStart">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_3.png</property>
+  </object>
+  <object class="GtkImage" id="CStop">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_2.png</property>
+  </object>
+  <object class="GtkImage" id="FREE">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_5.png</property>
+  </object>
+  <object class="GtkImage" id="FStart">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_13.png</property>
+  </object>
+  <object class="GtkImage" id="FStop">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_12.png</property>
+  </object>
+  <object class="GtkImage" id="I">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">2_3.png</property>
+  </object>
+  <object class="GtkImage" id="IO">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">3_2.png</property>
+  </object>
+  <object class="GtkImage" id="IOO">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">3_3.png</property>
+  </object>
+  <object class="GtkImage" id="IOOO">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">4_2.png</property>
+  </object>
+  <object class="GtkImage" id="IOOOO">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">4_3.png</property>
+  </object>
+  <object class="GtkImage" id="JOG">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_1.png</property>
+  </object>
+  <object class="GtkImage" id="MDA">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">3_1.png</property>
+  </object>
+  <object class="GtkImage" id="MNS">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_7.png</property>
+  </object>
+  <object class="GtkImage" id="PLS">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_9.png</property>
+  </object>
+  <object class="GtkImage" id="RAPID2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_8.png</property>
+  </object>
+  <object class="GtkImage" id="RESET">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_0.png</property>
+  </object>
+  <object class="GtkImage" id="Rapid">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">2_8.png</property>
+  </object>
+  <object class="GtkImage" id="RefPoint">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_3.png</property>
+  </object>
+  <object class="GtkImage" id="Repos">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_2.png</property>
+  </object>
+  <object class="GtkImage" id="SBlock">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_1.png</property>
+  </object>
+  <object class="GtkImage" id="SStart">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_11.png</property>
+  </object>
+  <object class="GtkImage" id="SStop">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">5_10.png</property>
+  </object>
+  <object class="GtkImage" id="TeachIn">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">2_1.png</property>
+  </object>
+  <object class="GtkImage" id="VAR">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">2_2.png</property>
+  </object>
+  <object class="GtkImage" id="WCSMCS">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">4_9.png</property>
+  </object>
+  <object class="GtkImage" id="minY">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_9.png</property>
+  </object>
+  <object class="GtkImage" id="mnsX">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">2_9.png</property>
+  </object>
+  <object class="GtkImage" id="mnsZ">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">3_8.png</property>
+  </object>
+  <object class="GtkImage" id="plsX">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">2_7.png</property>
+  </object>
+  <object class="GtkImage" id="plsY">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">3_7.png</property>
+  </object>
+  <object class="GtkImage" id="plsZ">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_8.png</property>
+  </object>
+  <object class="GtkWindow" id="window3">
+    <property name="width_request">762</property>
+    <property name="height_request">300</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkFixed" id="fixed1">
+        <property name="width_request">762</property>
+        <property name="height_request">300</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkLayout" id="layout31">
+            <property name="width_request">420</property>
+            <property name="height_request">50</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkVPaned" id="vpaned1">
+                <property name="width_request">420</property>
+                <property name="height_request">50</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkTable" id="table2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">9</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="HAL_LED" id="ld11">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld12">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld13">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld14">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld15">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld16">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld17">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld18">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld19">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="table1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">9</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="mkb14">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb15">
+                        <property name="width_request">36</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb16">
+                        <property name="width_request">36</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb17">
+                        <property name="width_request">36</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb11">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">JOG</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb12">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">Repos</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb13">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">RefPoint</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb18">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">plsZ</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb19">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">minY</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">114</property>
+            <property name="y">10</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="image1">
+            <property name="width_request">762</property>
+            <property name="height_request">300</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">klava.jpg</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLayout" id="layout32">
+            <property name="width_request">420</property>
+            <property name="height_request">50</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkVPaned" id="vpaned2">
+                <property name="width_request">420</property>
+                <property name="height_request">50</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkTable" id="table3">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">9</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="HAL_LED" id="ld21">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld22">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld23">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld24">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld25">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld26">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld27">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld28">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld29">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="table4">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">9</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="mkb21">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">TeachIn</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb22">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">VAR</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb23">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">I</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb24">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb25">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb26">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb27">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">plsX</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb28">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">Rapid</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb29">
+                        <property name="width_request">36</property>
+                        <property name="height_request">25</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">mnsX</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">114</property>
+            <property name="y">66</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="layout33">
+            <property name="width_request">420</property>
+            <property name="height_request">50</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkVPaned" id="vpaned3">
+                <property name="width_request">420</property>
+                <property name="height_request">50</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkTable" id="table5">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">9</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="HAL_LED" id="ld31">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld32">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld33">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld34">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld35">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld36">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld37">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld38">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld39">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="table6">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">9</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="mkb31">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">MDA</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb32">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">IO</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb33">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">IOO</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb34">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb35">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb36">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb37">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">plsY</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb38">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">mnsZ</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb39">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">114</property>
+            <property name="y">124</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="layout34">
+            <property name="width_request">420</property>
+            <property name="height_request">50</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkVPaned" id="vpaned4">
+                <property name="width_request">420</property>
+                <property name="height_request">50</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkTable" id="table7">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">9</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="HAL_LED" id="ld41">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld42">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld43">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld44">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld45">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld46">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld47">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld48">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld49">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="table8">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">9</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="mkb41">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">AUTO</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb42">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">IOOO</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb43">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">IOOOO</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb44">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb45">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb46">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb47">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb48">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb49">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">WCSMCS</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">114</property>
+            <property name="y">182</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="layout35">
+            <property name="width_request">668</property>
+            <property name="height_request">50</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkVPaned" id="vpaned5">
+                <property name="width_request">668</property>
+                <property name="height_request">50</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkTable" id="table9">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">14</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="HAL_LED" id="ld50">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld51">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld52">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld53">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld54">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld55">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld56">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld57">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld58">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld59">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">9</property>
+                        <property name="right_attach">10</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld60">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">10</property>
+                        <property name="right_attach">11</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld61">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">11</property>
+                        <property name="right_attach">12</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld62">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">12</property>
+                        <property name="right_attach">13</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="HAL_LED" id="ld63">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="led_blink_rate">0</property>
+                        <property name="led_shiny">True</property>
+                        <property name="led_size">5</property>
+                        <property name="pick_color_off">#ffffffffffff</property>
+                        <property name="pick_color_on">#ffffffff0000</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">13</property>
+                        <property name="right_attach">14</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTable" id="table10">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="n_columns">14</property>
+                    <property name="column_spacing">5</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="mkb50">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">RESET</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb51">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">SBlock</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb52">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">CStop</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="right_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb53">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">CStart</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">3</property>
+                        <property name="right_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb54">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">4</property>
+                        <property name="right_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb55">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">5</property>
+                        <property name="right_attach">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb56">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="right_attach">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb57">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">MNS</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">7</property>
+                        <property name="right_attach">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb58">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">RAPID2</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">8</property>
+                        <property name="right_attach">9</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb59">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">PLS</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">9</property>
+                        <property name="right_attach">10</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb60">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">SStop</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">10</property>
+                        <property name="right_attach">11</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb61">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">SStart</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">11</property>
+                        <property name="right_attach">12</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb62">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">FStop</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">12</property>
+                        <property name="right_attach">13</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="mkb63">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="image">FStart</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">13</property>
+                        <property name="right_attach">14</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">64</property>
+            <property name="y">244</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
