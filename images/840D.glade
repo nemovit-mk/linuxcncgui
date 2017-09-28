@@ -616,7 +616,1157 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <child>
-                                  <placeholder/>
+                                  <object class="GtkVPaned" id="vpaned1">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <child>
+                                      <object class="GtkEventBox" id="Rvar_header">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <child>
+                                          <object class="GtkLabel" id="Rvar_label">
+                                            <property name="height_request">15</property>
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <property name="xalign">0.05000000074505806</property>
+                                            <property name="label" translatable="yes">R parameter</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="resize">False</property>
+                                        <property name="shrink">True</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkScrolledWindow" id="scrlw_rvar">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">True</property>
+                                        <property name="hscrollbar_policy">never</property>
+                                        <property name="vscrollbar_policy">automatic</property>
+                                        <child>
+                                          <object class="GtkViewport" id="viewport1">
+                                            <property name="visible">True</property>
+                                            <property name="can_focus">False</property>
+                                            <child>
+                                              <object class="GtkTable" id="table2">
+                                                <property name="visible">True</property>
+                                                <property name="can_focus">False</property>
+                                                <property name="n_rows">14</property>
+                                                <property name="n_columns">7</property>
+                                                <property name="column_spacing">2</property>
+                                                <property name="row_spacing">2</property>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_0">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R0</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">1</property>
+                                                    <property name="bottom_attach">2</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox29">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_2">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">1</property>
+                                                    <property name="bottom_attach">2</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_13">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R13</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">1</property>
+                                                    <property name="bottom_attach">2</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_1">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R1</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">2</property>
+                                                    <property name="bottom_attach">3</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_14">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R14</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">2</property>
+                                                    <property name="bottom_attach">3</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <placeholder/>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox9">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_1">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">2</property>
+                                                    <property name="bottom_attach">3</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox30">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_3">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">3</property>
+                                                    <property name="bottom_attach">4</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox31">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_4">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">4</property>
+                                                    <property name="bottom_attach">5</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox32">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_5">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">5</property>
+                                                    <property name="bottom_attach">6</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox33">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_6">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">6</property>
+                                                    <property name="bottom_attach">7</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox34">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_7">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">7</property>
+                                                    <property name="bottom_attach">8</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox35">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_8">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">8</property>
+                                                    <property name="bottom_attach">9</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox36">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_9">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">9</property>
+                                                    <property name="bottom_attach">10</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox37">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_10">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">10</property>
+                                                    <property name="bottom_attach">11</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox38">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_11">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">11</property>
+                                                    <property name="bottom_attach">12</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox39">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_12">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">12</property>
+                                                    <property name="bottom_attach">13</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox40">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_13">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">2</property>
+                                                    <property name="right_attach">3</property>
+                                                    <property name="top_attach">13</property>
+                                                    <property name="bottom_attach">14</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox41">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_14">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">1</property>
+                                                    <property name="bottom_attach">2</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox42">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_15">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">2</property>
+                                                    <property name="bottom_attach">3</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox43">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_16">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">3</property>
+                                                    <property name="bottom_attach">4</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox44">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_17">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">4</property>
+                                                    <property name="bottom_attach">5</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox45">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_18">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">5</property>
+                                                    <property name="bottom_attach">6</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox46">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_19">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">6</property>
+                                                    <property name="bottom_attach">7</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox47">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_20">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">7</property>
+                                                    <property name="bottom_attach">8</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox48">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_21">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">8</property>
+                                                    <property name="bottom_attach">9</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox49">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_22">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">9</property>
+                                                    <property name="bottom_attach">10</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox50">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_23">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">10</property>
+                                                    <property name="bottom_attach">11</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox51">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_24">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">11</property>
+                                                    <property name="bottom_attach">12</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox52">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_25">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">12</property>
+                                                    <property name="bottom_attach">13</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkEventBox" id="eventbox53">
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <child>
+                                                      <object class="GtkLabel" id="lbl_rvar_26">
+                                                        <property name="width_request">100</property>
+                                                        <property name="visible">True</property>
+                                                        <property name="can_focus">False</property>
+                                                        <property name="xalign">0.94999998807907104</property>
+                                                        <property name="label" translatable="yes">label</property>
+                                                        <property name="justify">right</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">5</property>
+                                                    <property name="right_attach">6</property>
+                                                    <property name="top_attach">13</property>
+                                                    <property name="bottom_attach">14</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_2">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R2</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">3</property>
+                                                    <property name="bottom_attach">4</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_3">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R3</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">4</property>
+                                                    <property name="bottom_attach">5</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_4">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R4</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">5</property>
+                                                    <property name="bottom_attach">6</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_5">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R5</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">6</property>
+                                                    <property name="bottom_attach">7</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_6">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R6</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">7</property>
+                                                    <property name="bottom_attach">8</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_7">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R7</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">8</property>
+                                                    <property name="bottom_attach">9</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_8">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R8</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">9</property>
+                                                    <property name="bottom_attach">10</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_9">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R9</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">10</property>
+                                                    <property name="bottom_attach">11</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_10">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R10</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">11</property>
+                                                    <property name="bottom_attach">12</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_11">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R11</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">12</property>
+                                                    <property name="bottom_attach">13</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_12">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R12</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">1</property>
+                                                    <property name="right_attach">2</property>
+                                                    <property name="top_attach">13</property>
+                                                    <property name="bottom_attach">14</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_15">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R15</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">3</property>
+                                                    <property name="bottom_attach">4</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_16">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R16</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">4</property>
+                                                    <property name="bottom_attach">5</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_17">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R17</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">5</property>
+                                                    <property name="bottom_attach">6</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_18">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R18</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">6</property>
+                                                    <property name="bottom_attach">7</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_19">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R19</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">7</property>
+                                                    <property name="bottom_attach">8</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_20">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R20</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">8</property>
+                                                    <property name="bottom_attach">9</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_21">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R21</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">9</property>
+                                                    <property name="bottom_attach">10</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_22">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R22</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">10</property>
+                                                    <property name="bottom_attach">11</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_23">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R23</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">11</property>
+                                                    <property name="bottom_attach">12</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_24">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R24</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">12</property>
+                                                    <property name="bottom_attach">13</property>
+                                                  </packing>
+                                                </child>
+                                                <child>
+                                                  <object class="GtkLabel" id="tlbl_rvar_25">
+                                                    <property name="width_request">20</property>
+                                                    <property name="visible">True</property>
+                                                    <property name="can_focus">False</property>
+                                                    <property name="xalign">0</property>
+                                                    <property name="label" translatable="yes">R25</property>
+                                                  </object>
+                                                  <packing>
+                                                    <property name="left_attach">4</property>
+                                                    <property name="right_attach">5</property>
+                                                    <property name="top_attach">13</property>
+                                                    <property name="bottom_attach">14</property>
+                                                  </packing>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="resize">True</property>
+                                        <property name="shrink">True</property>
+                                      </packing>
+                                    </child>
+                                  </object>
                                 </child>
                               </object>
                               <packing>
