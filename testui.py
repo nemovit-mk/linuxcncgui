@@ -35,6 +35,15 @@ import time
 from time import strftime,localtime
 import hal_glib
 
+#import widget
+#import data
+#import color
+
+from widget import Widgets
+from color import Color
+from data import Data
+from screenlabels import ScrnLbl
+
 
 #--------------------------------------------------------
 # limit number of times err msgs are displayed
@@ -123,263 +132,6 @@ except:
     pass
 import linuxcnc
 
-# a class for holding the glade widgets rather then searching for them each time
-class Widgets:
-    def __init__(self, xml):
-        self._xml = xml
-    def __getattr__(self, attr):
-        r = self._xml.get_object(attr)
-        if r is None: raise AttributeError, "No widget %r" % attr
-        return r
-    def __getitem__(self, attr):
-        r = self._xml.get_object(attr)
-        if r is None: raise IndexError, "No widget %r" % attr
-        return r
-    def get_list(self, attr, parent = None):
-	l = self._xml.get_objects()
-	item_list = []
-	for item in l:
-	     if isinstance(item, attr): 
-		if parent != None:
-#			print ("parent %r  %r"% (item.get_parent(), parent))
-			if item.get_parent() == parent:			
-				item_list.append(item)
-	        else: item_list.append(item)
-	if len(item_list) < 1: raise IndexError, "No such widgets %r %r" % (type(item),len(l))
-        return item_list
-
-# a class for holding data
-# here we intialize the data
-class Data:
-    def __init__(self):
-	#screens and label list
-	self.CURRENTSCREEN = "Main"
-	self.PARENTSCREEN = "Main"
-	self.CURRENTLABEL = ""
-	self.screenName = [ "Main", 
-				"Auxiliary",  
-				"Correct Program",  
-				"MDI",  
-				"Program Control",  
-				"G fct",  
-				"Handwheel",  
-				"Presetting",  
-				"Spindles",  
-				"WCS",  
-				"getComp",  
-				"new Tool",  
-				"Rvar",  
-				"Tool offset",  
-				"Work offset",  
-				"part Programs",  
-				"stranot Cycles",  
-				"sub Programs",  
-				"user Cycles",  
-				"Workpiece"]
-	self.screenParams = [ ["Main", "", "", "", ""], 
-				["Main", "", "", "", "lblY2"],   
-				["Auxiliary", "", "", "", ""],   
-				["Auxiliary", "", "", "", ""],   
-				["Auxiliary", "", "", "", ""],   
-				["Main", "", "", "", "lblY1"],  
-
-				["Main", "", "", "", ""],  
-				["Main", "", "", "", ""],  
-				["Main", "", "", "", "lblY3"],  
-				["Main", "", "", "", ""],  
-				["WCS", "", "", "", ""],
- 
-				["Main", "", "", "", ""],  
-				["Main", "", "", "", "lblX2"],  
-				["Main", "", "", "", "lblX1"],  
-				["Main", "", "", "", "lblX4"],  
-				["Main", "", "", "", "lblX2"],  
-
-				["Main", "", "", "", "lblX4"],  
-				["Main", "", "", "", "lblX3"],  
-				["Main", "", "", "", "lblX5"],  
-				["Main", "", "", "", "lblX1"],  ]
-	self.labelX_JOG = [
-			["Machining", "Parameters", "Programs", "Services", "Diagnosis", "Auto", "Cycles", ""],
-			["", "Pre-\nsetting", "", "", "", "Handwheel", "Increment", ""],
-			["", "", "", "", "", "", "", ""],
-			["", "", "", "", "", "", "", ""],
-			["", "", "", "", "", "", "", ""],
-			["", "Pre-\nsetting", "", "", "", "Handwheel", "Increment", ""],
-			["", "", "", "", "", "", "", ""],
-			["", "", "", "", "", "", "", ""],
-			["", "Pre-\nsetting", "", "", "", "Handwheel", "Increment", ""],
-			["", "Pre-\nsetting", "Get Comp.", "", "", "Handwheel", "Increment", ""],
-			["", "", "", "", "", "", "", ""],
-			["", "", "", "", "", "", "", ""],
-			["Tool\noffset", "R\nvariables", "Setting\ndata", "Work\noffset", "User\ndata", "", "", "Determine\ncompens."],
-			["Tool\noffset", "R\nvariables", "Setting\ndata", "Work\noffset", "User\ndata", "", "", "Determine\ncompens."],
-			["Tool\noffset", "R\nvariables", "Setting\ndata", "Work\noffset", "User\ndata", "Variables\nshow", "", ""],
-			["Workpiece", "Part\nprograms", "Sub\nprograms", "Strand\ncycles", "User\ncycles", "Manufact.\nCycles", "", "Memory\ninformation"],
-			["Workpiece", "Part\nprograms", "Sub\nprograms", "Strand\ncycles", "User\ncycles", "Manufact.\nCycles", "", "Memory\ninformation"],
-			["Workpiece", "Part\nprograms", "Sub\nprograms", "Strand\ncycles", "User\ncycles", "Manufact.\nCycles", "", "Memory\ninformation"],
-			["Workpiece", "Part\nprograms", "Sub\nprograms", "Strand\ncycles", "User\ncycles", "Manufact.\nCycles", "", "Memory\ninformation"],
-			["Workpiece", "Part\nprograms", "Sub\nprograms", "Strand\ncycles", "User\ncycles", "Manufact.\nCycles", "", "Memory\ninformation"],]
-	self.labelY_JOG = [
-			["AUTO", "MDI", "JOG", "REPOS", "REF", "", "", "SBL\nExecute"],
-			["G fct.+\ntransf.", "Auxiliary\nfunction", "Spindles", "Axis\nfeedrate", "", "Zoom\nact.val", "WCS", ""],
-			["", "", "", "", "", "", "", "Close"],
-			["", "", "", "", "", "", "", "OK"],
-			["", "", "", "", "", "", "", "OK"],
-			["G fct.+ transf.", "Auxiliary\nfunction", "Spindles", "Axis\nfeedrate", "", "Zoom\nact.val", "WCS", ""],
-			["", "", "", "", "", "", "", "OK"],
-			["", "", "", "", "", "", "", "OK"],
-			["G fct.+ transf.", "Auxiliary\nfunction", "Spindles", "Axis\nfeedrate", "", "Zoom\nact.val", "WCS", ""],
-			["G fct.+ transf.", "Auxiliary\nfunction", "Spindles", "Axis\nfeedrate", "", "Zoom\nact.val", "WCS", ""],
-			["", "", "", "", "", "", "Abort", "OK"],
-			["", "", "", "", "", "", "Abort", "OK"],
-			["", "", "", "Delete\nselect", "Delete\nAll", "Search", "", ""],
-			["T no +", "T no -", "D no +", "D no -", "Delete", "Details", "Overview", "New\ntool"],
-			["ZO +", "ZO -", "EFFBASI", "OVERVIEW", "LOCATION", "", "DELETE", "STORE"],
-			["New", "Copy", "Insert", "Delete", "Rename", "Alter\nenable", "Program\nselect", ""],
-			["New", "Copy", "Insert", "Delete", "Rename", "Alter\nenable", "Program\nselect", ""],
-			["New", "Copy", "Insert", "Delete", "Rename", "Alter\nenable", "Program\nselect", ""],
-			["New", "Copy", "Insert", "Delete", "Rename", "Alter\nenable", "Program\nselect", ""],
-			["New", "Copy", "Insert", "Delete", "Rename", "Alter\nenable", "Program\nselect", ""],]
-
-        # constants for mode idenity
-        self._MAN = 0
-        self._MDI = 1
-        self._AUTO = 2
-        self._JOG = 3
-        self._MM = 1
-#        self._IMPERIAL = 0
-        # paths included to give access to handler files
-#        self.SKINPATH = SKINPATH
-#        self.CONFIGPATH = CONFIGPATH
-#        self.BASEPATH = BASE
-
-        self.audio_available = False
-        self.use_screen2 = False
-        self.theme_name = "Follow System Theme"
-        self.abs_textcolor = ""
-        self.rel_textcolor = ""
-        self.dtg_textcolor = ""
-        self.err_textcolor = ""
-        self.window_geometry = ""
-        self.window_max = ""
-        self.axis_list = []
-        self.rotary_joints = False
-        self.active_axis_buttons = [(None,None)] # axis letter,axis number
-        self.abs_color = (0, 65535, 0)
-        self.rel_color = (65535, 0, 0)
-        self.dtg_color = (0, 0, 65535)
-        self.highlight_color = (65535,65535,65535)
-        self.highlight_major = False
-#        self.display_order = (_REL,_DTG,_ABS)
-        self.mode_order = (self._MAN,self._MDI,self._AUTO)
-        self.mode_labels = ["Manual Mode","MDI Mode","Auto Mode"]
-        self.IPR_mode = False
-        self.plot_view = ("p","x","y","y2","z","z2")
-        self.task_mode = 0
-        self.active_gcodes = []
-        self.active_mcodes = []
-        for letter in ('x','y','z','a','b','c','u','v','w'):
-            self['%s_abs'%letter] = 0.0
-            self['%s_rel'%letter] = 0.0
-            self['%s_dtg'%letter] = 0.0
-            self['%s_is_homed'%letter] = False
-        self.spindle_request_rpm = 0
-        self.spindle_dir = 0
-        self.spindle_speed = 0
-        self.spindle_start_rpm = 300
-        self.spindle_preset = 300
-        self.active_spindle_command = "" # spindle command setting
-        self.active_feed_command = "" # feed command setting
-        self.system = 1
-        self.estopped = True
-        self.dro_units = self._MM
-        self.machine_units = self._MM
-        self.tool_in_spindle = 0
-        self.flood = False
-        self.mist = False
-        self.machine_on = False
-        self.or_limits = False
-        self.op_stop = False
-        self.block_del = False
-        self.all_homed = False
-
-        self.jog_rate = 15
-        self.jog_rate_inc = 1
-        self.jog_rate_max = 60
-        self.jog_increments = []
-        self.current_jogincr_index = 0
-        self.angular_jog_adjustment_flag = False
-        self.angular_jog_increments = []
-        self.angular_jog_rate = 1800
-        self.angular_jog_rate_inc = 60
-        self.angular_jog_rate_max = 7200
-        self.current_angular_jogincr_index = 0
-        self.feed_override = 1.0
-        self.feed_override_inc = .05
-        self.feed_override_max = 2.0
-        self.rapid_override = 1.0
-        self.rapid_override_inc = .05
-        self.rapid_override_max = 1.0
-        self.spindle_override = 1.0
-        self.spindle_override_inc = .05
-        self.spindle_override_max = 1.2
-        self.spindle_override_min = .50
-        self.maxvelocity = 1
-        self.velocity_override = 1.0
-        self.velocity_override_inc = .05
-        self.edit_mode = False
-        self.full_graphics = False
-        self.graphic_move_inc = 20
-        self.plot_hidden = False
-        self.file = ""
-        self.file_lines = 0
-        self.line = 0
-        self.last_line = 0
-        self.motion_line = 0
-        self.id = 0
-        self.dtg = 0.0
-        self.show_dtg = False
-        self.velocity = 0.0
-        self.delay = 0.0
-        self.preppedtool = None
-        self.lathe_mode = False
-        self.diameter_mode = True
-        self.tooleditor = ""
-        self.tooltable = ""
-        self.alert_sound = "/usr/share/sounds/ubuntu/stereo/bell.ogg"         
-        self.error_sound  = "/usr/share/sounds/ubuntu/stereo/dialog-question.ogg"
-        self.ob = None
-        self.index_tool_dialog = None
-        self.keyboard_dialog = None
-        self.preset_spindle_dialog = None
-        self.spindle_control_dialog = None
-        self.entry_dialog = None
-        self.restart_dialog = None
-        self.key_event_last = None,0
-	
-
-    def __getitem__(self, item):
-        return getattr(self, item)
-    def __setitem__(self, item, value):
-        return setattr(self, item, value)
-
-class Color:
-	def __init__(self):
-		self.dgray = gtk.gdk.Color('#3c3c3c')
-		self.gray = gtk.gdk.Color('#dddddd')
-		self.lgray = gtk.gdk.Color('#d2d1cf')
-		self.lblue = gtk.gdk.Color('#cddddd')
-		self.blue = gtk.gdk.Color('#067aa3')
-		self.orange = gtk.gdk.Color('#ff7f00')
-		self.white = gtk.gdk.Color('#000000')
-    	def __getitem__(self, item):
-        		return getattr(self, item)
-    	def __setitem__(self, item, value):
-        		return setattr(self, item, value)
-
-	
-
 class myGUI:
 
     	def __init__(self):
@@ -387,6 +139,7 @@ class myGUI:
 		#add data 
 		self.data = Data()
 		self.colors = Color()
+		self.scrnlbl = ScrnLbl()
 
         	# Glade setup
         	gladefile = os.path.join(IMAGEDIR, 'images/840D.glade')
@@ -588,9 +341,11 @@ class myGUI:
 			boxs = self.widgets.get_list(gtk.EventBox)
 			for box in boxs: 
 				box.modify_bg(gtk.STATE_NORMAL, self.colors.lblue)
+
 			boxs = self.widgets.get_list(gtk.EventBox, self.widgets["lineX"])
 			for box in boxs: 
 				box.modify_bg(gtk.STATE_NORMAL, self.colors.gray)
+
 			boxs = self.widgets.get_list(gtk.EventBox, self.widgets["lineY"])
 			for box in boxs: 
 				box.modify_bg(gtk.STATE_NORMAL, self.colors.gray)
@@ -857,7 +612,7 @@ class myGUI:
 			elif key == "Program\nselect":
 				print("OK")
 
-	def highliteLBL(self, label = None, oldLabel = None, button = None, oldButton = None):
+	def highliteLBL(self, label = None, oldLabel = None):
 		print("change lbl color")
 		if label:
 			box = self.widgets[label].get_parent()
@@ -865,6 +620,8 @@ class myGUI:
 		if oldLabel and oldLabel != label:
 			box = self.widgets[oldLabel].get_parent()
 			box.modify_bg(gtk.STATE_NORMAL, self.colors.white)
+
+	def highliteBTN(self, button = None, oldButton = None):
 		if button:
 			box = self.widgets[button].get_parent()
 			box.modify_bg(gtk.STATE_NORMAL, self.colors.blue)
@@ -874,19 +631,26 @@ class myGUI:
 			box.modify_bg(gtk.STATE_NORMAL, self.colors.lgray)
 			print("lbl %r gray"% oldButton)
 
+
 	def set_screen(self,screen):
-		oldLabel = self.data.screenParams[self.data.screenName.index(self.data.CURRENTSCREEN)][1]
+		oldLabel = self.data.screenParams[self.data.screenName.index(self.data.CURRENTSCREEN)][3]
+		#oldLabel = ""
 		oldButton = self.data.screenParams[self.data.screenName.index(self.data.CURRENTSCREEN)][4]
 		print("btn old %r "% oldButton)
 		print("screen %r "% self.data.CURRENTSCREEN)
-		self.data.PARENTSCREEN = self.data.screenParams[self.data.screenName.index(screen)][0]
-		self.data.CURRENTLABEL = self.data.screenParams[self.data.screenName.index(screen)][1] 
-		notebook = self.data.screenParams[self.data.screenName.index(screen)][2]
-		change_act = self.data.screenParams[self.data.screenName.index(screen)][3]
+
+		self.data.PARENTSCREEN = self.data.screenParams[self.data.screenName.index(screen)][0]	
+		notebook = self.data.screenParams[self.data.screenName.index(screen)][1]
+		change_act = self.data.screenParams[self.data.screenName.index(screen)][2]
+		self.data.CURRENTLABEL = self.data.screenParams[self.data.screenName.index(screen)][3]
 		button = self.data.screenParams[self.data.screenName.index(screen)][4]
-		self.highliteLBL(self.data.CURRENTLABEL, oldLabel, button, oldButton)	
+
+		self.highliteLBL(self.data.CURRENTLABEL, oldLabel)
+		self.highliteBTN(button, oldButton)	
+
 		self.data.CURRENTSCREEN = screen
 		if notebook:
+			self.widgets["mainscreen"].set_current_page(int(notebook))
 			print ("set notebook page")
 		if change_act:
 			self.change_view(change_act)
@@ -898,6 +662,88 @@ class myGUI:
 		self.set_labels(self.data.screenName.index(screan))
 		self.set_screen(screan)
 		print("OK")
+
+	def place_sign(self, sign):
+		if self.data.CURRENTLABEL:
+			if self.data.editMode == "INSERT":
+				text = self.widgets[self.data.CURRENTLABEL].get_text()
+				if not self.data.editPosition: self.data.editPosition = len(text)
+				text = text[:self.data.editPosition] + sign + text[self.data.editPosition:]
+				self.data.editPosition = self.data.editPosition + 1
+				self.widgets[self.data.CURRENTLABEL].set_text(text)
+			elif  self.data.editMode == "SELECT":
+				print("OK")
+	
+	def check_text(self):
+		print("OK")
+
+	def move_key(self, direction):
+		lbl = self.data.CURRENTLABEL
+		if lbl:
+			st1, tbl, st3 = lbl.split('_')			
+			lblLst = getattr(self.scrnlbl, tbl)
+			maxY = len(lblLst) - 1
+			y = 0
+			for lst in lblLst:
+				print("list %r"% lst)						
+				try: 	
+					print("lbl %r"% lbl)
+					x = lst.index(lbl)
+					print("x is  %r"% x)
+				except:
+					x = None
+				if x != None: 											
+					maxX = len(lst) - 1
+					break
+				y = y + 1			
+			if direction == "LEFT":
+				while True:
+					newX = x - 1
+					if newX < 0: 
+						newX = maxX
+						newY = y - 1
+						if newY < 0:
+							newY = maxY
+					else: newY = y
+					if lblLst[newY][newX]: break									
+			elif direction == "RIGHT":
+				print("OK")
+			elif direction == "UP":
+				print("OK")
+			elif direction == "DOWN":
+				print("OK")
+			newLbl = lblLst[newY][newX]
+			if self.data.CURRENTLABEL != newLbl:
+				self.highliteLBL(newLbl, self.data.CURRENTLABEL)
+				self.data.CURRENTLABEL = newLbl
+				self.data.editPosition = ""
+		print("OK")
+
+	def page_key(self, direction):
+		print("OK")
+
+
+	def channel_key(self):
+		print("OK")
+	def alarm_cancel_key(self):
+		print("OK")
+	def help_key(self):
+		print("OK")
+
+	def next_win_key(self):
+		print("OK")
+	def backspace_key(self):
+		print("OK")
+
+	def select_key(self):
+		print("OK")
+	def insert_key(self):
+		print("OK")
+	def end_key(self):
+		print("OK")
+	def input_key(self):
+		print("OK")
+
 
 	# this installs local signals unless overriden by custom handlers
 	# HAL pin signal call-backs are covered in the HAL pin initilization functions
@@ -1007,8 +853,6 @@ class myGUI:
         	    print ("Dirrect connection: could not connect ")
 
 	def on_mkb11_clicked(self, widget, data=None):
-        if self.data.SHIFTED:
-            self.place_sign()
 		print ("OK")
 	def on_mkb12_clicked(self, widget, data=None):
 		print ("OK")
@@ -1074,94 +918,168 @@ class myGUI:
 		print ("OK")
 	def on_mkb63_clicked(self, widget, data=None):
 		print ("OK")
-
+	#FIRST ROW
 	def on_kb11_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("A")
+		else: self.place_sign("7")
 	def on_kb12_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("B")
+		else: self.place_sign("8")
 	def on_kb13_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("C")
+		else: self.place_sign("9")
 	def on_kb14_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("D")
+		else: self.place_sign("/")
 	def on_kb15_clicked(self, widget, data=None):
-		print ("OK")
-
+		if self.data.SHIFTED:
+			self.place_sign("E")
+		else: self.place_sign("(")
+	#SECOND ROW
 	def on_kb21_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("F")
+		else: self.place_sign("4")
 	def on_kb22_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("G")
+		else: self.place_sign("5")
 	def on_kb23_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("H")
+		else: self.place_sign("6")
 	def on_kb24_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("I")
+		else: self.place_sign("*")
 	def on_kb25_clicked(self, widget, data=None):
-		print ("OK")
-
+		if self.data.SHIFTED:
+			self.place_sign("J")
+		else: self.place_sign(")")
+	#THIRD ROW
 	def on_kb31_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("K")
+		else: self.place_sign("1")
 	def on_kb32_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("L")
+		else: self.place_sign("2")
 	def on_kb33_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("M")
+		else: self.place_sign("3")
 	def on_kb34_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("N")
+		else: self.place_sign("-")
 	def on_kb35_clicked(self, widget, data=None):
-		print ("OK")
-
+		if self.data.SHIFTED:
+			self.place_sign("O")
+		else: self.place_sign("[")
+	#FOURTH ROW
 	def on_kb41_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("P")
+		else: self.place_sign("=")
 	def on_kb42_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("Q")
+		else: self.place_sign("0")
 	def on_kb43_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("R")
+		else: self.place_sign(".")
 	def on_kb44_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("S")
+		else: self.place_sign("+")
 	def on_kb45_clicked(self, widget, data=None):
-		print ("OK")
-
+		if self.data.SHIFTED:
+			self.place_sign("T")
+		else: self.place_sign("]")
+	#FIFTH ROW
 	def on_kb51_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("U")
+		else: self.place_sign("\\")
 	def on_kb52_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("V")
+		else: self.place_sign(",")
 	def on_kb53_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("W")
+		else: self.channel_key() 
 	def on_kb54_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("X")
+		else: self.alarm_cancel_key()
 	def on_kb55_clicked(self, widget, data=None):
-		print ("OK")
-
+		if self.data.SHIFTED:
+			self.place_sign("Y")
+		else: self.help_key()
+	#Sixth row
 	def on_kb61_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("Z")
+		else: self.place_sign(";")
 	def on_kb62_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("?")
+		else: self.next_win_key()
 	def on_kb63_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("!")
+		else: self.move_key("UP")
 	def on_kb64_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("\'")
+		else: self.page_key("DOWN")
 	def on_kb65_clicked(self, widget, data=None):
-		print ("OK")
-
+		self.backspace_key()
+	#Seventh row
 	def on_kb71_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("_")
+		else: self.place_sign(" ")
 	def on_kb72_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("<")
+		else: self.move_key("LEFT")
 	def on_kb73_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign(">")
+		else: self.select_key()
 	def on_kb74_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("\"")
+		else: self.move_key("RIGHT")
 	def on_kb75_clicked(self, widget, data=None):
-		print ("OK")
+		self.insert_key()
 
 	def on_kb81_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.data.SHIFTED = False
+		else: self.data.SHIFTED = True
 	def on_kb82_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign(":")
+		else: self.end_key()
 	def on_kb83_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("$")
+		else: self.move_key("DOWN")
 	def on_kb84_clicked(self, widget, data=None):
-		print ("OK")
+		if self.data.SHIFTED:
+			self.place_sign("%")
+		else: self.page_key("DOWN")
 	def on_kb85_clicked(self, widget, data=None):
-		print ("OK")
+		self.input_key()
 
 	def on_btnX1_clicked(self, widget, data=None):
 		self.soft_key_pressed("X0")
