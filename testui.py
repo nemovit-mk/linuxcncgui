@@ -707,11 +707,35 @@ class myGUI:
 					else: newY = y
 					if lblLst[newY][newX]: break									
 			elif direction == "RIGHT":
-				print("OK")
+				while True:
+					newX = x + 1
+					if newX > maxX: 
+						newX = 0
+						newY = y + 1
+						if newY > maxY:
+							newY = 0
+					else: newY = y
+					if lblLst[newY][newX]: break	
 			elif direction == "UP":
-				print("OK")
+				while True:
+					newY = y - 1
+					if newY < 0: 
+						newY = maxY
+						newX = x - 1
+						if newX < 0:
+							newX = maxX
+					else: newX = x
+					if lblLst[newY][newX]: break		
 			elif direction == "DOWN":
-				print("OK")
+				while True:
+					newY = y + 1
+					if newY > maxY: 
+						newY = 0
+						newX = x + 1
+						if newX > maxX:
+							newX = 0
+					else: newX = x
+					if lblLst[newY][newX]: break	
 			newLbl = lblLst[newY][newX]
 			if self.data.CURRENTLABEL != newLbl:
 				self.highliteLBL(newLbl, self.data.CURRENTLABEL)

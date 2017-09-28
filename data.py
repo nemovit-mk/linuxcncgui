@@ -16,23 +16,26 @@ class Data:
 				"Correct Program",  
 				"MDI",  
 				"Program Control",  
-				"G fct",  
+				"G fct", 
+ 
 				"Handwheel",  
 				"Presetting",  
 				"Spindles",  
 				"WCS",  
-				"getComp",  
+				"getComp",
+  
 				"new Tool",  
 				"Rvar",  
 				"Tool offset",  
 				"Work offset",  
-				"part Programs",  
+				"part Programs",
+ 
 				"stranot Cycles",  
 				"sub Programs",  
 				"user Cycles",  
 				"Workpiece"]
-	self.screenParams = [ ["Main", "", "", "", ""], 
-				["Main", "", "", "", "lblY2"],   
+	self.screenParams = [ ["Main", "0", "", "", ""], 
+				["Main", "0", "", "", "lblY2"],   
 				["Auxiliary", "", "", "", ""],   
 				["Auxiliary", "", "", "", ""],   
 				["Auxiliary", "", "", "", ""],   
@@ -46,7 +49,7 @@ class Data:
  
 				["Main", "", "", "", ""],  
 				["Main", "1", "", "lbl_rvar_0", "lblX2"],  
-				["Main", "", "", "", "lblX1"],  
+				["Main", "2", "", "", "lblX1"],  
 				["Main", "", "", "", "lblX4"],  
 				["Main", "", "", "", "lblX2"],  
 
