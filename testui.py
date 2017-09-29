@@ -332,15 +332,30 @@ class myGUI:
 	
 			labels = self.widgets.get_list(gtk.Label)
 			for lbl in labels: 
-				lbl.modify_font(pango.FontDescription('dejavusans condensed 10'))
-			
+				lbl.modify_font(pango.FontDescription('dejavusans condensed 10'))		
+						
 			leds = self.widgets.get_list(gladevcp.led.HAL_LED)
 			for led in leds: 
 				led.modify_bg(gtk.STATE_NORMAL, self.colors.dgray)
+
+			ntbks = self.widgets.get_list(gtk.Notebook)
+			for ntbk in ntbks: 
+				ntbk.modify_bg(gtk.STATE_NORMAL, self.colors.lblue)
+			
+			vprts = self.widgets.get_list(gtk.Viewport)
+			for vprt in vprts: 
+				vprt.modify_bg(gtk.STATE_NORMAL, self.colors.lblue)
+
+			scrls = self.widgets.get_list(gtk.ScrolledWindow)
+			for scrl in scrls: 
+				scrl.modify_bg(gtk.STATE_NORMAL, self.colors.lblue)
 	
 			boxs = self.widgets.get_list(gtk.EventBox)
 			for box in boxs: 
 				box.modify_bg(gtk.STATE_NORMAL, self.colors.lblue)
+	
+			for header in self.scrnlbl.headers:
+				self.widgets[header].modify_bg(gtk.STATE_NORMAL, self.colors.blue)
 
 			boxs = self.widgets.get_list(gtk.EventBox, self.widgets["lineX"])
 			for box in boxs: 
@@ -354,6 +369,168 @@ class myGUI:
 			self.widgets["eventboxBig"].modify_bg(gtk.STATE_NORMAL, self.colors.lgray)
 		except:
         	    	print ("Problem with style settings ")
+
+	def highliteLBL(self, label = None, oldLabel = None):
+		print("change lbl color")
+		if label:
+			st1, tbl, st3 = label.split('_')			
+			lblLst = getattr(self.scrnlbl, tbl)
+			for lst_row in lblLst:
+				for lbl in lst_row:
+					if lbl:
+						self.widgets[lbl].get_parent().modify_bg(gtk.STATE_NORMAL, self.colors.white)
+			self.widgets[label].get_parent().modify_bg(gtk.STATE_NORMAL, self.colors.orange) 			
+		if oldLabel and oldLabel != label:
+			box = self.widgets[oldLabel].get_parent()
+			box.modify_bg(gtk.STATE_NORMAL, self.colors.white)
+
+	def highliteBTN(self, button = None, oldButton = None):
+		if button:
+			box = self.widgets[button].get_parent()
+			box.modify_bg(gtk.STATE_NORMAL, self.colors.blue)
+			print("lbl %r blue"% button)
+		if oldButton and oldButton != button:
+			box = self.widgets[oldButton].get_parent()
+			box.modify_bg(gtk.STATE_NORMAL, self.colors.lgray)
+			print("lbl %r gray"% oldButton)
+
+
+	def set_screen(self,screen):
+		oldLabel = self.data.screenParams[self.data.screenName.index(self.data.CURRENTSCREEN)][3]
+		#oldLabel = ""
+		oldButton = self.data.screenParams[self.data.screenName.index(self.data.CURRENTSCREEN)][4]
+		print("btn old %r "% oldButton)
+		print("screen %r "% self.data.CURRENTSCREEN)
+
+		self.data.PARENTSCREEN = self.data.screenParams[self.data.screenName.index(screen)][0]	
+		notebook = self.data.screenParams[self.data.screenName.index(screen)][1]
+		change_act = self.data.screenParams[self.data.screenName.index(screen)][2]
+		self.data.CURRENTLABEL = self.data.screenParams[self.data.screenName.index(screen)][3]
+		button = self.data.screenParams[self.data.screenName.index(screen)][4]
+
+		self.highliteLBL(self.data.CURRENTLABEL, oldLabel)
+		self.highliteBTN(button, oldButton)	
+
+		self.data.CURRENTSCREEN = screen
+		if notebook:
+			self.widgets["mainscreen"].set_current_page(int(notebook))
+			print ("set notebook page")
+		if change_act:
+			self.change_view(change_act)
+
+	def change_view(self, state):
+		print ("change view")
+
+	def change_screen(self,screan):
+		self.set_labels(self.data.screenName.index(screan))
+		self.set_screen(screan)
+		print("OK")
+
+	def place_sign(self, sign):
+		if self.data.CURRENTLABEL:
+			if self.data.editMode == "INSERT":
+				text = self.widgets[self.data.CURRENTLABEL].get_text()
+				if not self.data.editPosition: self.data.editPosition = len(text)
+				text = text[:self.data.editPosition] + sign + text[self.data.editPosition:]
+				self.data.editPosition = self.data.editPosition + 1
+				self.widgets[self.data.CURRENTLABEL].set_text(text)
+			elif  self.data.editMode == "SELECT":
+				print("OK")
+	
+	def check_text(self):
+		print("OK")
+
+	def move_key(self, direction):
+		lbl = self.data.CURRENTLABEL
+		if lbl:
+			st1, tbl, st3 = lbl.split('_')			
+			lblLst = getattr(self.scrnlbl, tbl)
+			maxY = len(lblLst) - 1
+			y = 0
+			for lst in lblLst:
+				print("list %r"% lst)						
+				try: 	
+					print("lbl %r"% lbl)
+					x = lst.index(lbl)
+					print("x is  %r"% x)
+				except:
+					x = None
+				if x != None: 											
+					maxX = len(lst) - 1
+					break
+				y = y + 1			
+			if direction == "LEFT":
+				while True:
+					newX = x - 1
+					if newX < 0: 
+						newX = maxX
+						newY = y - 1
+						if newY < 0:
+							newY = maxY
+					else: newY = y
+					if lblLst[newY][newX]: break									
+			elif direction == "RIGHT":
+				while True:
+					newX = x + 1
+					if newX > maxX: 
+						newX = 0
+						newY = y + 1
+						if newY > maxY:
+							newY = 0
+					else: newY = y
+					if lblLst[newY][newX]: break	
+			elif direction == "UP":
+				while True:
+					newY = y - 1
+					if newY < 0: 
+						newY = maxY
+						newX = x - 1
+						if newX < 0:
+							newX = maxX
+					else: newX = x
+					if lblLst[newY][newX]: break		
+			elif direction == "DOWN":
+				while True:
+					newY = y + 1
+					if newY > maxY: 
+						newY = 0
+						newX = x + 1
+						if newX > maxX:
+							newX = 0
+					else: newX = x
+					if lblLst[newY][newX]: break	
+			newLbl = lblLst[newY][newX]
+			if self.data.CURRENTLABEL != newLbl:
+				self.highliteLBL(newLbl, self.data.CURRENTLABEL)
+				self.data.CURRENTLABEL = newLbl
+				self.data.editPosition = ""
+		print("OK")
+
+	def page_key(self, direction):
+		print("OK")
+
+
+	def channel_key(self):
+		print("OK")
+	def alarm_cancel_key(self):
+		print("OK")
+	def help_key(self):
+		print("OK")
+
+	def next_win_key(self):
+		print("OK")
+	def backspace_key(self):
+		print("OK")
+
+	def select_key(self):
+		print("OK")
+	def insert_key(self):
+		print("OK")
+	def end_key(self):
+		print("OK")
+	def input_key(self):
+		print("OK")
+
 
 	def soft_key_pressed(self, soft_key):
 		if "X" in soft_key:
@@ -612,167 +789,20 @@ class myGUI:
 			elif key == "Program\nselect":
 				print("OK")
 
-	def highliteLBL(self, label = None, oldLabel = None):
-		print("change lbl color")
-		if label:
-			box = self.widgets[label].get_parent()
-			box.modify_bg(gtk.STATE_NORMAL, self.colors.orange)
-		if oldLabel and oldLabel != label:
-			box = self.widgets[oldLabel].get_parent()
-			box.modify_bg(gtk.STATE_NORMAL, self.colors.white)
-
-	def highliteBTN(self, button = None, oldButton = None):
-		if button:
-			box = self.widgets[button].get_parent()
-			box.modify_bg(gtk.STATE_NORMAL, self.colors.blue)
-			print("lbl %r blue"% button)
-		if oldButton and oldButton != button:
-			box = self.widgets[oldButton].get_parent()
-			box.modify_bg(gtk.STATE_NORMAL, self.colors.lgray)
-			print("lbl %r gray"% oldButton)
-
-
-	def set_screen(self,screen):
-		oldLabel = self.data.screenParams[self.data.screenName.index(self.data.CURRENTSCREEN)][3]
-		#oldLabel = ""
-		oldButton = self.data.screenParams[self.data.screenName.index(self.data.CURRENTSCREEN)][4]
-		print("btn old %r "% oldButton)
-		print("screen %r "% self.data.CURRENTSCREEN)
-
-		self.data.PARENTSCREEN = self.data.screenParams[self.data.screenName.index(screen)][0]	
-		notebook = self.data.screenParams[self.data.screenName.index(screen)][1]
-		change_act = self.data.screenParams[self.data.screenName.index(screen)][2]
-		self.data.CURRENTLABEL = self.data.screenParams[self.data.screenName.index(screen)][3]
-		button = self.data.screenParams[self.data.screenName.index(screen)][4]
-
-		self.highliteLBL(self.data.CURRENTLABEL, oldLabel)
-		self.highliteBTN(button, oldButton)	
-
-		self.data.CURRENTSCREEN = screen
-		if notebook:
-			self.widgets["mainscreen"].set_current_page(int(notebook))
-			print ("set notebook page")
-		if change_act:
-			self.change_view(change_act)
-
-	def change_view(self, state):
-		print ("change view")
-
-	def change_screen(self,screan):
-		self.set_labels(self.data.screenName.index(screan))
-		self.set_screen(screan)
-		print("OK")
-
-	def place_sign(self, sign):
-		if self.data.CURRENTLABEL:
-			if self.data.editMode == "INSERT":
-				text = self.widgets[self.data.CURRENTLABEL].get_text()
-				if not self.data.editPosition: self.data.editPosition = len(text)
-				text = text[:self.data.editPosition] + sign + text[self.data.editPosition:]
-				self.data.editPosition = self.data.editPosition + 1
-				self.widgets[self.data.CURRENTLABEL].set_text(text)
-			elif  self.data.editMode == "SELECT":
-				print("OK")
-	
-	def check_text(self):
-		print("OK")
-
-	def move_key(self, direction):
-		lbl = self.data.CURRENTLABEL
-		if lbl:
-			st1, tbl, st3 = lbl.split('_')			
-			lblLst = getattr(self.scrnlbl, tbl)
-			maxY = len(lblLst) - 1
-			y = 0
-			for lst in lblLst:
-				print("list %r"% lst)						
-				try: 	
-					print("lbl %r"% lbl)
-					x = lst.index(lbl)
-					print("x is  %r"% x)
-				except:
-					x = None
-				if x != None: 											
-					maxX = len(lst) - 1
-					break
-				y = y + 1			
-			if direction == "LEFT":
-				while True:
-					newX = x - 1
-					if newX < 0: 
-						newX = maxX
-						newY = y - 1
-						if newY < 0:
-							newY = maxY
-					else: newY = y
-					if lblLst[newY][newX]: break									
-			elif direction == "RIGHT":
-				while True:
-					newX = x + 1
-					if newX > maxX: 
-						newX = 0
-						newY = y + 1
-						if newY > maxY:
-							newY = 0
-					else: newY = y
-					if lblLst[newY][newX]: break	
-			elif direction == "UP":
-				while True:
-					newY = y - 1
-					if newY < 0: 
-						newY = maxY
-						newX = x - 1
-						if newX < 0:
-							newX = maxX
-					else: newX = x
-					if lblLst[newY][newX]: break		
-			elif direction == "DOWN":
-				while True:
-					newY = y + 1
-					if newY > maxY: 
-						newY = 0
-						newX = x + 1
-						if newX > maxX:
-							newX = 0
-					else: newX = x
-					if lblLst[newY][newX]: break	
-			newLbl = lblLst[newY][newX]
-			if self.data.CURRENTLABEL != newLbl:
-				self.highliteLBL(newLbl, self.data.CURRENTLABEL)
-				self.data.CURRENTLABEL = newLbl
-				self.data.editPosition = ""
-		print("OK")
-
-	def page_key(self, direction):
-		print("OK")
-
-
-	def channel_key(self):
-		print("OK")
-	def alarm_cancel_key(self):
-		print("OK")
-	def help_key(self):
-		print("OK")
-
-	def next_win_key(self):
-		print("OK")
-	def backspace_key(self):
-		print("OK")
-
-	def select_key(self):
-		print("OK")
-	def insert_key(self):
-		print("OK")
-	def end_key(self):
-		print("OK")
-	def input_key(self):
-		print("OK")
-
+	def on_stp_btn_clicked(self, data = None, data2 = None):
+		if self.data.estopped:
+			print("un STOP")
+			self.data.estopped = False
+			self.widgets.stp_btn.set_from_file("./modules/keyboardmain/ui/un_stop.png")
+		else: 
+			print("STOP")
+			self.data.estopped = True
+			self.widgets.stp_btn.set_from_file("./modules/keyboardmain/ui/stop.png")
 
 	# this installs local signals unless overriden by custom handlers
 	# HAL pin signal call-backs are covered in the HAL pin initilization functions
 	def connect_signals(self):
-		try:		
+#		try:		
 			self.widgets.mkb11.connect('clicked', self.on_mkb11_clicked)
 			self.widgets.mkb12.connect('clicked', self.on_mkb12_clicked)
 			self.widgets.mkb13.connect('clicked', self.on_mkb13_clicked)
@@ -868,31 +898,51 @@ class myGUI:
 			self.widgets.btnY6.connect('clicked', self.on_btnY6_clicked)
 			self.widgets.btnY7.connect('clicked', self.on_btnY7_clicked)
 			self.widgets.btnY8.connect('clicked', self.on_btnY8_clicked)
+			
+			self.widgets.stp_btn_box.connect('button-press-event', self.on_stp_btn_clicked)
 	
 			self.widgets.btn_recall.connect('clicked', self.on_btn_recall_clicked)
 			self.widgets.btn_machine.connect('clicked', self.on_btn_machine_clicked)
 			self.widgets.btn_etc.connect('clicked', self.on_btn_etc_clicked)
 			self.widgets.btn_menu.connect('clicked', self.on_btn_menu_clicked)
-        	except:
-        	    print ("Dirrect connection: could not connect ")
+ #       	except:
+ #       	    print ("Dirrect connection: could not connect ")
 
 	def on_mkb11_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld11.is_on:
+			self.widgets.ld11.set_active(False)
+		else:
+			self.widgets.ld11.set_active(True)
 	def on_mkb12_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld12.is_on:
+			self.widgets.ld12.set_active(False)
+		else:
+			self.widgets.ld12.set_active(True)
 	def on_mkb13_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld13.is_on:
+			self.widgets.ld13.set_active(False)
+		else:
+			self.widgets.ld13.set_active(True)
 	def on_mkb18_clicked(self, widget, data=None):
 		print ("OK")
 	def on_mkb19_clicked(self, widget, data=None):
 		print ("OK")
 
 	def on_mkb21_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld21.is_on:
+			self.widgets.ld21.set_active(False)
+		else:
+			self.widgets.ld21.set_active(True)
 	def on_mkb22_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld22.is_on:
+			self.widgets.ld22.set_active(False)
+		else:
+			self.widgets.ld22.set_active(True)
 	def on_mkb23_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld23.is_on:
+			self.widgets.ld23.set_active(False)
+		else:
+			self.widgets.ld23.set_active(True)
 	def on_mkb27_clicked(self, widget, data=None):
 		print ("OK")
 	def on_mkb28_clicked(self, widget, data=None):
@@ -901,11 +951,20 @@ class myGUI:
 		print ("OK")
 
 	def on_mkb31_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld31.is_on:
+			self.widgets.ld31.set_active(False)
+		else:
+			self.widgets.ld31.is_on = True
 	def on_mkb32_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld32.is_on:
+			self.widgets.ld32.set_active(False)
+		else:
+			self.widgets.ld32.is_on = True
 	def on_mkb33_clicked(self, widget, data=None):
-		print ("OK")
+		if self.widgets.ld33.is_on:
+			self.widgets.ld33.set_active(False)
+		else:
+			self.widgets.ld33.is_on = True
 	def on_mkb37_clicked(self, widget, data=None):
 		print ("OK")
 	def on_mkb38_clicked(self, widget, data=None):

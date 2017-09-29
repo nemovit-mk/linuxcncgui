@@ -67,6 +67,13 @@
     <property name="can_focus">False</property>
     <property name="pixbuf">1_1.png</property>
   </object>
+  <object class="GtkImage" id="JOG1">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_1.png</property>
+  </object>
   <object class="GtkImage" id="MDA">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -106,7 +113,21 @@
     <property name="can_focus">False</property>
     <property name="pixbuf">1_3.png</property>
   </object>
+  <object class="GtkImage" id="RefPoint1">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_3.png</property>
+  </object>
   <object class="GtkImage" id="Repos">
+    <property name="width_request">32</property>
+    <property name="height_request">25</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_2.png</property>
+  </object>
+  <object class="GtkImage" id="Repos1">
     <property name="width_request">32</property>
     <property name="height_request">25</property>
     <property name="visible">True</property>
@@ -152,6 +173,11 @@
     <property name="can_focus">False</property>
     <property name="pixbuf">1_9.png</property>
   </object>
+  <object class="GtkImage" id="minY1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_9.png</property>
+  </object>
   <object class="GtkImage" id="mnsX">
     <property name="width_request">32</property>
     <property name="height_request">25</property>
@@ -177,6 +203,11 @@
     <property name="pixbuf">3_7.png</property>
   </object>
   <object class="GtkImage" id="plsZ">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">1_8.png</property>
+  </object>
+  <object class="GtkImage" id="plsZ1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="pixbuf">1_8.png</property>
@@ -1852,6 +1883,92 @@
           <packing>
             <property name="x">64</property>
             <property name="y">244</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="layout1">
+            <property name="width_request">100</property>
+            <property name="height_request">220</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkVBox" id="vbox1">
+                <property name="width_request">100</property>
+                <property name="height_request">220</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="JogWheel" id="jogwheel2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="size">100</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLayout" id="layout3">
+                    <property name="width_request">100</property>
+                    <property name="height_request">20</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="JogWheel" id="jogwheel1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="size">100</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">570</property>
+            <property name="y">20</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="layout2">
+            <property name="width_request">80</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkEventBox" id="stp_btn_box">
+                <property name="width_request">80</property>
+                <property name="height_request">80</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkImage" id="stp_btn">
+                    <property name="width_request">100</property>
+                    <property name="height_request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">stop.png</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">5</property>
+            <property name="y">36</property>
           </packing>
         </child>
       </object>

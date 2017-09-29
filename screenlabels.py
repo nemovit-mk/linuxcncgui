@@ -4,6 +4,21 @@
 # here we intialize the data
 class ScrnLbl:
 	def __init__(self):
+		self.headers = ["Header1",
+				"Header2",
+				"Header3",
+				"Header4",
+				"Header5",
+				"Header6",
+				"Header7",
+				"Header8",
+				"Header9",
+				"Header10",
+				"Header11",
+				"Header12",
+				"Header13",
+				"Header14",
+				"Header15",]
 		self.rvar = [ ["lbl_rvar_0", "lbl_rvar_13"],
 				["lbl_rvar_1", "lbl_rvar_14"],
 				["lbl_rvar_2", "lbl_rvar_15"],
