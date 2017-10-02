@@ -49,7 +49,7 @@ class Data:
  
 				["Main", "", "", "", ""],  
 				["Main", "1", "", "lbl_rvar_0", "lblX2"],  
-				["Main", "2", "", "", "lblX1"],  
+				["Main", "4", "", "", "lblX1"],  
 				["Main", "", "", "", "lblX4"],  
 				["Main", "", "", "", "lblX2"],  
 
