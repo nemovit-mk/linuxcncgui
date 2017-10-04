@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+# constants
+_X = 0;_Y = 1;_Z = 2;_A = 3;_B = 4;_C = 5;_U = 6;_V = 7;_W = 8
+_ABS = 0;_REL = 1;_DTG = 2
+_SPINDLE_INPUT = 1;_PERCENT_INPUT = 2;_VELOCITY_INPUT = 3;_DEGREE_INPUT = 4
+
 # a class for holding data
 # here we intialize the data
 class Data:
@@ -12,9 +17,9 @@ class Data:
         self._MM = 1
         self._IMPERIAL = 0
         # paths included to give access to handler files
-        self.SKINPATH = SKINPATH
-        self.CONFIGPATH = CONFIGPATH
-        self.BASEPATH = BASE
+#        self.SKINPATH = SKINPATH
+#        self.CONFIGPATH = CONFIGPATH
+#        self.BASEPATH = BASE
 
         self.audio_available = False
         self.use_screen2 = False

@@ -130,7 +130,9 @@ from gscreen import emc_interface
 from gscreen import mdi
 from gscreen import preferences
 from gscreen import keybindings
+
 from widget import Widgets
+from data import Data
 
 # this is for hiding the pointer when using a touch screen
 pixmap = gtk.gdk.Pixmap(None, 1, 1, 1)
@@ -341,40 +343,42 @@ class Gscreen:
             _print_help()
             sys.exit(0)
         # check for a local translation folder
-        locallocale = os.path.join(CONFIGPATH,"locale")
-        if os.path.exists(locallocale):
-            LOCALEDIR = locallocale
-            domain = self.skinname
-            print _("**** GSCREEN INFO: CUSTOM locale name =",LOCALEDIR,self.skinname)
-        else:
-            locallocale = os.path.join(SKINPATH,"%s/locale"%self.skinname)
-            if os.path.exists(locallocale):
-                LOCALEDIR = locallocale
-                domain = self.skinname
-                print _("**** GSCREEN INFO: SKIN locale name =",LOCALEDIR,self.skinname)
-            else:
-                LOCALEDIR = os.path.join(BASE, "share", "locale")
-                domain = "linuxcnc"
-        locale.setlocale(locale.LC_ALL, '')
-        locale.bindtextdomain(domain, LOCALEDIR)
-        gettext.install(domain, localedir=LOCALEDIR, unicode=True)
-        gettext.bindtextdomain(domain, LOCALEDIR)
+#        locallocale = os.path.join(CONFIGPATH,"locale")
+#        if os.path.exists(locallocale):
+#            LOCALEDIR = locallocale
+#            domain = self.skinname
+#            print _("**** GSCREEN INFO: CUSTOM locale name =",LOCALEDIR,self.skinname)
+#        else:
+#            locallocale = os.path.join(SKINPATH,"%s/locale"%self.skinname)
+#            if os.path.exists(locallocale):
+#                LOCALEDIR = locallocale
+#                domain = self.skinname
+#                print _("**** GSCREEN INFO: SKIN locale name =",LOCALEDIR,self.skinname)
+#            else:
+#                LOCALEDIR = os.path.join(BASE, "share", "locale")
+#                domain = "linuxcnc"
+#        locale.setlocale(locale.LC_ALL, '')
+#        locale.bindtextdomain(domain, LOCALEDIR)
+#        gettext.install(domain, localedir=LOCALEDIR, unicode=True)
+#        gettext.bindtextdomain(domain, LOCALEDIR)
 
         # main screen
-        localglade = os.path.join(CONFIGPATH,"%s.glade"%self.skinname)
-        if os.path.exists(localglade):
-            print _("\n**** GSCREEN INFO:  Using CUSTOM glade file from %s ****"% localglade)
-            xmlname = localglade
-        else:
-            localglade = os.path.join(SKINPATH,"%s/%s.glade"%(self.skinname,self.skinname))
-            if os.path.exists(localglade):
-                print _("\n**** GSCREEN INFO:  Using SKIN glade file from %s ****"% localglade)
-                xmlname = localglade
-            else:
-                print _("\n**** GSCREEN INFO:  using STOCK glade file from: %s ****"% xmlname2)
+#        localglade = os.path.join(CONFIGPATH,"%s.glade"%self.skinname)
+#        if os.path.exists(localglade):
+#            print _("\n**** GSCREEN INFO:  Using CUSTOM glade file from %s ****"% localglade)
+#            xmlname = localglade
+#        else:
+#            localglade = os.path.join(SKINPATH,"%s/%s.glade"%(self.skinname,self.skinname))
+#            if os.path.exists(localglade):
+#                print _("\n**** GSCREEN INFO:  Using SKIN glade file from %s ****"% localglade)
+#                xmlname = localglade
+#            else:
+#                print _("\n**** GSCREEN INFO:  using STOCK glade file from: %s ****"% xmlname2)
+        IMAGEDIR = os.path.dirname(os.path.realpath(__file__))
+        xmlname = os.path.join(IMAGEDIR, 'images/840D.glade')
         try:
             self.xml = gtk.Builder()
-            self.xml.set_translation_domain(domain) # for locale translations
+#            self.xml.set_translation_domain(domain) # for locale translations
             self.xml.add_from_file(xmlname)
             # this is a fix for themeing - it sets the widgets style name to 
             # the widget id name. You can over ride it later with:
@@ -387,7 +391,8 @@ class Gscreen:
             print _("**** Gscreen GLADE ERROR:    With main screen xml file: %s"% xmlname)
             sys.exit(0)
         # second screen
-        localglade = os.path.join(CONFIGPATH,"%s2.glade"%self.skinname)
+#        localglade = os.path.join(CONFIGPATH,"%s2.glade"%self.skinname)
+        localglade = ""
         if os.path.exists(localglade):
             print _("\n**** GSCREEN INFO:  Screen 2 -Using CUSTOM glade file from %s ****"% localglade)
             xmlname2 = localglade
