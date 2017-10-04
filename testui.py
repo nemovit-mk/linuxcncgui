@@ -34,6 +34,7 @@ import vte
 import time
 from time import strftime,localtime
 import hal_glib
+import gobject
 
 #import widget
 #import data
@@ -43,6 +44,9 @@ from widget import Widgets
 from color import Color
 from data import Data
 from screenlabels import ScrnLbl
+
+from modules.keyboard.keyboard import Keyboard
+from modules.keyboardmain.keyboardmain import Keyboardmain
 
 
 #--------------------------------------------------------
@@ -132,9 +136,13 @@ except:
     pass
 import linuxcnc
 
-class myGUI:
+
+
+class myGUI(gobject.GObject):
 
     	def __init__(self):
+
+		self.__gobject_init__()
 
 		#add data 
 		self.data = Data()
@@ -147,8 +155,8 @@ class myGUI:
 		gladefile3 = os.path.join(IMAGEDIR, 'modules/keyboardmain/ui/keyboardmain.glade')
         	self.builder = gtk.Builder()
         	self.builder.add_from_file(gladefile)
-		self.builder.add_from_file(gladefile2)	
-		self.builder.add_from_file(gladefile3)
+#		self.builder.add_from_file(gladefile2)	
+#		self.builder.add_from_file(gladefile3)
 	
 #		Need to correct connection
 
@@ -160,12 +168,14 @@ class myGUI:
 
 #		self.widgets.window1.connect('window_delete_evet', self.on_window_delete_event)
 		self.widgets.window1.set_title("Sinumeric 840D")
-		self.widgets.window2.set_title("Alfa-Numeric Keyboard")
-		self.widgets.window3.set_title("Main Keyboard")
+#		self.widgets.window2.set_title("Alfa-Numeric Keyboard")
+#		self.widgets.window3.set_title("Main Keyboard")
 	
 		self.widgets.window1.connect('destroy', self.on_window_delete_event)
-		self.widgets.window2.connect('destroy', self.on_window_delete_event)
-		self.widgets.window3.connect('destroy', self.on_window_delete_event)
+#		self.widgets.window2.connect('destroy', self.on_window_delete_event)
+#		self.widgets.window3.connect('destroy', self.on_window_delete_event)
+
+
 
 		self.set_style()
 		self.set_labels(self.data.screenName.index("Main"))
@@ -174,6 +184,14 @@ class myGUI:
 #		gtk.EventBox.modify_bg(gtk.STATE_NORMAL, lgray)
 
         	self.connect_signals()
+
+		self.widgets.window2 = Keyboard()
+#		self.widgets.window2.window.connect('destroy', self.on_window_delete_event)
+		self.widgets.window2.connect('key_press_keyboard', self.on_keyboard_signal)
+
+		self.widgets.window3 = Keyboardmain()
+#		self.widgets.window2.window.connect('destroy', self.on_window_delete_event)
+		self.widgets.window3.connect('key_press_keyboard_main', self.on_main_kayboard_signal)
 	
 #		# Check for messages
 #		try:
@@ -203,8 +221,20 @@ class myGUI:
 		# Finally, show the window 
 #        	self.window.show()
 		self.widgets.window1.show()
-		self.widgets.window2.show()
-		self.widgets.window3.show()
+#		self.widgets.window2.show()
+#		self.widgets.window3.show()
+	
+#	def _emit_signal(self, *nkwargs):
+#		_data = "test"
+#        	self.emit('my_signal', _data)
+
+	def on_main_kayboard_signal(self, keyboard):
+		print("Signal from main keyboard")
+
+	def on_keyboard_signal(self, keyboard):
+#		print("some %r"% some)
+		print("data %r"% keyboard.data)
+		self.widgets.vcp_mdihistory840d.on_my_signal(keyboard.data)
 
     	# check linuxcnc for status, error and then update the readout
     	def timer_interrupt(self):		
@@ -334,9 +364,9 @@ class myGUI:
 			for lbl in labels: 
 				lbl.modify_font(pango.FontDescription('dejavusans condensed 10'))		
 						
-			leds = self.widgets.get_list(gladevcp.led.HAL_LED)
-			for led in leds: 
-				led.modify_bg(gtk.STATE_NORMAL, self.colors.dgray)
+#			leds = self.widgets.get_list(gladevcp.led.HAL_LED)
+#			for led in leds: 
+#				led.modify_bg(gtk.STATE_NORMAL, self.colors.dgray)
 
 			ntbks = self.widgets.get_list(gtk.Notebook)
 			for ntbk in ntbks: 
@@ -439,98 +469,6 @@ class myGUI:
 	
 	def check_text(self):
 		print("OK")
-
-	def move_key(self, direction):
-		lbl = self.data.CURRENTLABEL
-		if lbl:
-			st1, tbl, st3 = lbl.split('_')			
-			lblLst = getattr(self.scrnlbl, tbl)
-			maxY = len(lblLst) - 1
-			y = 0
-			for lst in lblLst:
-				print("list %r"% lst)						
-				try: 	
-					print("lbl %r"% lbl)
-					x = lst.index(lbl)
-					print("x is  %r"% x)
-				except:
-					x = None
-				if x != None: 											
-					maxX = len(lst) - 1
-					break
-				y = y + 1			
-			if direction == "LEFT":
-				while True:
-					newX = x - 1
-					if newX < 0: 
-						newX = maxX
-						newY = y - 1
-						if newY < 0:
-							newY = maxY
-					else: newY = y
-					if lblLst[newY][newX]: break									
-			elif direction == "RIGHT":
-				while True:
-					newX = x + 1
-					if newX > maxX: 
-						newX = 0
-						newY = y + 1
-						if newY > maxY:
-							newY = 0
-					else: newY = y
-					if lblLst[newY][newX]: break	
-			elif direction == "UP":
-				while True:
-					newY = y - 1
-					if newY < 0: 
-						newY = maxY
-						newX = x - 1
-						if newX < 0:
-							newX = maxX
-					else: newX = x
-					if lblLst[newY][newX]: break		
-			elif direction == "DOWN":
-				while True:
-					newY = y + 1
-					if newY > maxY: 
-						newY = 0
-						newX = x + 1
-						if newX > maxX:
-							newX = 0
-					else: newX = x
-					if lblLst[newY][newX]: break	
-			newLbl = lblLst[newY][newX]
-			if self.data.CURRENTLABEL != newLbl:
-				self.highliteLBL(newLbl, self.data.CURRENTLABEL)
-				self.data.CURRENTLABEL = newLbl
-				self.data.editPosition = ""
-		print("OK")
-
-	def page_key(self, direction):
-		print("OK")
-
-
-	def channel_key(self):
-		print("OK")
-	def alarm_cancel_key(self):
-		print("OK")
-	def help_key(self):
-		print("OK")
-
-	def next_win_key(self):
-		print("OK")
-	def backspace_key(self):
-		print("OK")
-
-	def select_key(self):
-		print("OK")
-	def insert_key(self):
-		print("OK")
-	def end_key(self):
-		print("OK")
-	def input_key(self):
-		print("OK")
-
 
 	def soft_key_pressed(self, soft_key):
 		if "X" in soft_key:
@@ -789,98 +727,11 @@ class myGUI:
 			elif key == "Program\nselect":
 				print("OK")
 
-	def on_stp_btn_clicked(self, data = None, data2 = None):
-		if self.data.estopped:
-			print("un STOP")
-			self.data.estopped = False
-			self.widgets.stp_btn.set_from_file("./modules/keyboardmain/ui/un_stop.png")
-		else: 
-			print("STOP")
-			self.data.estopped = True
-			self.widgets.stp_btn.set_from_file("./modules/keyboardmain/ui/stop.png")
 
 	# this installs local signals unless overriden by custom handlers
 	# HAL pin signal call-backs are covered in the HAL pin initilization functions
 	def connect_signals(self):
-#		try:		
-			self.widgets.mkb11.connect('clicked', self.on_mkb11_clicked)
-			self.widgets.mkb12.connect('clicked', self.on_mkb12_clicked)
-			self.widgets.mkb13.connect('clicked', self.on_mkb13_clicked)
-			self.widgets.mkb18.connect('clicked', self.on_mkb18_clicked)
-			self.widgets.mkb19.connect('clicked', self.on_mkb19_clicked)
-		
-			self.widgets.mkb21.connect('clicked', self.on_mkb21_clicked)
-			self.widgets.mkb22.connect('clicked', self.on_mkb22_clicked)
-			self.widgets.mkb23.connect('clicked', self.on_mkb23_clicked)
-			self.widgets.mkb27.connect('clicked', self.on_mkb27_clicked)
-			self.widgets.mkb28.connect('clicked', self.on_mkb28_clicked)
-			self.widgets.mkb29.connect('clicked', self.on_mkb29_clicked)
-	
-			self.widgets.mkb31.connect('clicked', self.on_mkb31_clicked)
-			self.widgets.mkb32.connect('clicked', self.on_mkb32_clicked)
-			self.widgets.mkb33.connect('clicked', self.on_mkb33_clicked)
-			self.widgets.mkb37.connect('clicked', self.on_mkb37_clicked)
-			self.widgets.mkb38.connect('clicked', self.on_mkb38_clicked)
-	
-	
-			self.widgets.mkb41.connect('clicked', self.on_mkb41_clicked)
-			self.widgets.mkb42.connect('clicked', self.on_mkb42_clicked)
-			self.widgets.mkb43.connect('clicked', self.on_mkb43_clicked)
-			self.widgets.mkb49.connect('clicked', self.on_mkb49_clicked)
-	
-			self.widgets.mkb50.connect('clicked', self.on_mkb50_clicked)
-			self.widgets.mkb51.connect('clicked', self.on_mkb51_clicked)
-			self.widgets.mkb52.connect('clicked', self.on_mkb52_clicked)
-			self.widgets.mkb53.connect('clicked', self.on_mkb53_clicked)
-			self.widgets.mkb57.connect('clicked', self.on_mkb57_clicked)
-			self.widgets.mkb58.connect('clicked', self.on_mkb58_clicked)
-			self.widgets.mkb59.connect('clicked', self.on_mkb59_clicked)
-			self.widgets.mkb60.connect('clicked', self.on_mkb60_clicked)
-			self.widgets.mkb61.connect('clicked', self.on_mkb61_clicked)
-			self.widgets.mkb62.connect('clicked', self.on_mkb62_clicked)
-			self.widgets.mkb63.connect('clicked', self.on_mkb63_clicked)
-	
-			self.widgets.kb11.connect('clicked', self.on_kb11_clicked)
-			self.widgets.kb12.connect('clicked', self.on_kb12_clicked)
-			self.widgets.kb13.connect('clicked', self.on_kb13_clicked)
-			self.widgets.kb14.connect('clicked', self.on_kb14_clicked)
-			self.widgets.kb15.connect('clicked', self.on_kb15_clicked)
-			self.widgets.kb21.connect('clicked', self.on_kb21_clicked)
-			self.widgets.kb22.connect('clicked', self.on_kb22_clicked)
-			self.widgets.kb23.connect('clicked', self.on_kb23_clicked)
-			self.widgets.kb24.connect('clicked', self.on_kb24_clicked)
-			self.widgets.kb25.connect('clicked', self.on_kb25_clicked)
-			self.widgets.kb31.connect('clicked', self.on_kb31_clicked)
-			self.widgets.kb32.connect('clicked', self.on_kb32_clicked)
-			self.widgets.kb33.connect('clicked', self.on_kb33_clicked)
-			self.widgets.kb34.connect('clicked', self.on_kb34_clicked)
-			self.widgets.kb35.connect('clicked', self.on_kb35_clicked)
-			self.widgets.kb41.connect('clicked', self.on_kb41_clicked)
-			self.widgets.kb42.connect('clicked', self.on_kb42_clicked)
-			self.widgets.kb43.connect('clicked', self.on_kb43_clicked)
-			self.widgets.kb44.connect('clicked', self.on_kb44_clicked)
-			self.widgets.kb45.connect('clicked', self.on_kb45_clicked)
-			self.widgets.kb51.connect('clicked', self.on_kb51_clicked)
-			self.widgets.kb52.connect('clicked', self.on_kb52_clicked)
-			self.widgets.kb53.connect('clicked', self.on_kb53_clicked)
-			self.widgets.kb54.connect('clicked', self.on_kb54_clicked)
-			self.widgets.kb55.connect('clicked', self.on_kb55_clicked)
-			self.widgets.kb61.connect('clicked', self.on_kb61_clicked)
-			self.widgets.kb62.connect('clicked', self.on_kb62_clicked)
-			self.widgets.kb63.connect('clicked', self.on_kb63_clicked)
-			self.widgets.kb64.connect('clicked', self.on_kb64_clicked)
-			self.widgets.kb65.connect('clicked', self.on_kb65_clicked)
-			self.widgets.kb71.connect('clicked', self.on_kb71_clicked)
-			self.widgets.kb72.connect('clicked', self.on_kb72_clicked)
-			self.widgets.kb73.connect('clicked', self.on_kb73_clicked)
-			self.widgets.kb74.connect('clicked', self.on_kb74_clicked)
-			self.widgets.kb75.connect('clicked', self.on_kb75_clicked)
-			self.widgets.kb81.connect('clicked', self.on_kb81_clicked)
-			self.widgets.kb82.connect('clicked', self.on_kb82_clicked)
-			self.widgets.kb83.connect('clicked', self.on_kb83_clicked)
-			self.widgets.kb84.connect('clicked', self.on_kb84_clicked)
-			self.widgets.kb85.connect('clicked', self.on_kb85_clicked)
-	
+		try:		
 			self.widgets.btnX1.connect('clicked', self.on_btnX1_clicked)
 			self.widgets.btnX2.connect('clicked', self.on_btnX2_clicked)
 			self.widgets.btnX3.connect('clicked', self.on_btnX3_clicked)
@@ -899,270 +750,13 @@ class myGUI:
 			self.widgets.btnY7.connect('clicked', self.on_btnY7_clicked)
 			self.widgets.btnY8.connect('clicked', self.on_btnY8_clicked)
 			
-			self.widgets.stp_btn_box.connect('button-press-event', self.on_stp_btn_clicked)
-	
+
 			self.widgets.btn_recall.connect('clicked', self.on_btn_recall_clicked)
 			self.widgets.btn_machine.connect('clicked', self.on_btn_machine_clicked)
 			self.widgets.btn_etc.connect('clicked', self.on_btn_etc_clicked)
 			self.widgets.btn_menu.connect('clicked', self.on_btn_menu_clicked)
- #       	except:
- #       	    print ("Dirrect connection: could not connect ")
-
-	def on_mkb11_clicked(self, widget, data=None):
-		if self.widgets.ld11.is_on:
-			self.widgets.ld11.set_active(False)
-		else:
-			self.widgets.ld11.set_active(True)
-	def on_mkb12_clicked(self, widget, data=None):
-		if self.widgets.ld12.is_on:
-			self.widgets.ld12.set_active(False)
-		else:
-			self.widgets.ld12.set_active(True)
-	def on_mkb13_clicked(self, widget, data=None):
-		if self.widgets.ld13.is_on:
-			self.widgets.ld13.set_active(False)
-		else:
-			self.widgets.ld13.set_active(True)
-	def on_mkb18_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb19_clicked(self, widget, data=None):
-		print ("OK")
-
-	def on_mkb21_clicked(self, widget, data=None):
-		if self.widgets.ld21.is_on:
-			self.widgets.ld21.set_active(False)
-		else:
-			self.widgets.ld21.set_active(True)
-	def on_mkb22_clicked(self, widget, data=None):
-		if self.widgets.ld22.is_on:
-			self.widgets.ld22.set_active(False)
-		else:
-			self.widgets.ld22.set_active(True)
-	def on_mkb23_clicked(self, widget, data=None):
-		if self.widgets.ld23.is_on:
-			self.widgets.ld23.set_active(False)
-		else:
-			self.widgets.ld23.set_active(True)
-	def on_mkb27_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb28_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb29_clicked(self, widget, data=None):
-		print ("OK")
-
-	def on_mkb31_clicked(self, widget, data=None):
-		if self.widgets.ld31.is_on:
-			self.widgets.ld31.set_active(False)
-		else:
-			self.widgets.ld31.is_on = True
-	def on_mkb32_clicked(self, widget, data=None):
-		if self.widgets.ld32.is_on:
-			self.widgets.ld32.set_active(False)
-		else:
-			self.widgets.ld32.is_on = True
-	def on_mkb33_clicked(self, widget, data=None):
-		if self.widgets.ld33.is_on:
-			self.widgets.ld33.set_active(False)
-		else:
-			self.widgets.ld33.is_on = True
-	def on_mkb37_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb38_clicked(self, widget, data=None):
-		print ("OK")
-
-	def on_mkb41_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb42_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb43_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb49_clicked(self, widget, data=None):
-		print ("OK")
-
-	def on_mkb50_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb51_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb52_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb53_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb57_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb58_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb59_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb60_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb61_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb62_clicked(self, widget, data=None):
-		print ("OK")
-	def on_mkb63_clicked(self, widget, data=None):
-		print ("OK")
-	#FIRST ROW
-	def on_kb11_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("A")
-		else: self.place_sign("7")
-	def on_kb12_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("B")
-		else: self.place_sign("8")
-	def on_kb13_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("C")
-		else: self.place_sign("9")
-	def on_kb14_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("D")
-		else: self.place_sign("/")
-	def on_kb15_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("E")
-		else: self.place_sign("(")
-	#SECOND ROW
-	def on_kb21_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("F")
-		else: self.place_sign("4")
-	def on_kb22_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("G")
-		else: self.place_sign("5")
-	def on_kb23_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("H")
-		else: self.place_sign("6")
-	def on_kb24_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("I")
-		else: self.place_sign("*")
-	def on_kb25_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("J")
-		else: self.place_sign(")")
-	#THIRD ROW
-	def on_kb31_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("K")
-		else: self.place_sign("1")
-	def on_kb32_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("L")
-		else: self.place_sign("2")
-	def on_kb33_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("M")
-		else: self.place_sign("3")
-	def on_kb34_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("N")
-		else: self.place_sign("-")
-	def on_kb35_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("O")
-		else: self.place_sign("[")
-	#FOURTH ROW
-	def on_kb41_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("P")
-		else: self.place_sign("=")
-	def on_kb42_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("Q")
-		else: self.place_sign("0")
-	def on_kb43_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("R")
-		else: self.place_sign(".")
-	def on_kb44_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("S")
-		else: self.place_sign("+")
-	def on_kb45_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("T")
-		else: self.place_sign("]")
-	#FIFTH ROW
-	def on_kb51_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("U")
-		else: self.place_sign("\\")
-	def on_kb52_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("V")
-		else: self.place_sign(",")
-	def on_kb53_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("W")
-		else: self.channel_key() 
-	def on_kb54_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("X")
-		else: self.alarm_cancel_key()
-	def on_kb55_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("Y")
-		else: self.help_key()
-	#Sixth row
-	def on_kb61_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("Z")
-		else: self.place_sign(";")
-	def on_kb62_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("?")
-		else: self.next_win_key()
-	def on_kb63_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("!")
-		else: self.move_key("UP")
-	def on_kb64_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("\'")
-		else: self.page_key("DOWN")
-	def on_kb65_clicked(self, widget, data=None):
-		self.backspace_key()
-	#Seventh row
-	def on_kb71_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("_")
-		else: self.place_sign(" ")
-	def on_kb72_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("<")
-		else: self.move_key("LEFT")
-	def on_kb73_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign(">")
-		else: self.select_key()
-	def on_kb74_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("\"")
-		else: self.move_key("RIGHT")
-	def on_kb75_clicked(self, widget, data=None):
-		self.insert_key()
-
-	def on_kb81_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.data.SHIFTED = False
-		else: self.data.SHIFTED = True
-	def on_kb82_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign(":")
-		else: self.end_key()
-	def on_kb83_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("$")
-		else: self.move_key("DOWN")
-	def on_kb84_clicked(self, widget, data=None):
-		if self.data.SHIFTED:
-			self.place_sign("%")
-		else: self.page_key("DOWN")
-	def on_kb85_clicked(self, widget, data=None):
-		self.input_key()
+        	except:
+		       	print ("Dirrect connection: could not connect ")
 
 	def on_btnX1_clicked(self, widget, data=None):
 		self.soft_key_pressed("X0")
@@ -1207,13 +801,6 @@ class myGUI:
 	def on_btn_menu_clicked(self, widget, data=None):
 		self.change_screen("Main")
 
-#	    def on_kb11_clicked(self, widget, data=None):
-#		self.widgets.lblX1.set_text("New Text from 1")
-##		self.widgets.label2.set_text("New Text from 1")
-
-#	    def on_kb12_clicked(self, widget, data=None):
-##		self.widgets.lblX3.set_text(" 2")
-#		self.widgets.lblX2.set_text("2nd")
 
 ## =========================================================
 ## BEGIN - Helper functions
@@ -1235,7 +822,7 @@ class myGUI:
 
 #        	self.set_state(linuxcnc.STATE_OFF)
 #        	self.set_state(linuxcnc.STATE_ESTOP)
-        
+	
 
 
 def main():

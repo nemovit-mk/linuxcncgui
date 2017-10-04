@@ -22,10 +22,12 @@ from hal_widgets import _HalWidgetBase
 import linuxcnc
 from hal_glib import GStat
 from hal_actions import _EMC_ActionBase, ensure_mode
+#from testui import myGUI
 
 class EMC_MDIHistory840D(gtk.VBox, _EMC_ActionBase):
     __gtype_name__ = 'EMC_MDIHistory840D'
     def __init__(self, *a, **kw):
+        self.__gobject_init__()
         gtk.VBox.__init__(self, *a, **kw)
         self.gstat = GStat()
         # if 'NO_FORCE_HOMING' is true, MDI  commands are allowed before homing.
@@ -62,6 +64,8 @@ class EMC_MDIHistory840D(gtk.VBox, _EMC_ActionBase):
         self.entry.connect('icon-press', self.submit)
         self.tv.connect('cursor-changed', self.select)
 
+     #   self.connect('my_syganal', on_my_signal)
+
         self.pack_start(scroll, True)
         self.pack_start(self.entry, False)
         self.gstat.connect('state-off', lambda w: self.set_sensitive(False))
@@ -71,6 +75,9 @@ class EMC_MDIHistory840D(gtk.VBox, _EMC_ActionBase):
         self.gstat.connect('all-homed', lambda w: self.set_sensitive(self.machine_on()))
         self.reload()
         self.show_all()
+
+    def on_my_signal(self, data):
+        self.entry.set_text(data) 
 
     def reload(self):
         self.model.clear()
