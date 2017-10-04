@@ -2040,47 +2040,47 @@ class Gscreen:
         else:
             self.widgets.gremlin.set_property('use_default_controls',not self.data.hide_cursor)
 
-    # display calculator for input
-    def launch_numerical_input(self,callback="on_numerical_entry_return",data=None,data2=None,title=_("Entry dialog")):
-        """This is a function to launch a numerical entry/calculator dialog.
-            The default callback function will be 'on_numerical_entry_return.
-            It will check to see if the handler file has this function, otherwise it will use the default.
-        """
-        if self.data.entry_dialog: return
-        label = gtk.Label(title)
-        label.modify_font(pango.FontDescription("sans 20"))
-        self.data.entry_dialog = gtk.Dialog(title,
-                   self.widgets.window1,
-                   gtk.DIALOG_DESTROY_WITH_PARENT,
-                   (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                    gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
-        calc = gladevcp.Calculator()
-        calc.set_editable(True)
-        self.data.entry_dialog.vbox.pack_start(label)
-        self.data.entry_dialog.vbox.add(calc)
-        calc.set_value("")
-        calc.set_property("font","sans 20")
-        calc.entry.connect("activate", lambda w : self.data.entry_dialog.emit('response',gtk.RESPONSE_ACCEPT))
-        self.data.entry_dialog.parse_geometry("400x400")
-        #self.data.entry_dialog.set_decorated(False)
-        if callback in dir(self.handler_instance):
-            self.data.entry_dialog.connect("response", self.handler_instance[callback],calc,data,data2)
-        else:
-            self.data.entry_dialog.connect("response", self[callback],calc,data,data2)
-        self.data.entry_dialog.show_all()
+#    # display calculator for input
+#    def launch_numerical_input(self,callback="on_numerical_entry_return",data=None,data2=None,title=_("Entry dialog")):
+#        """This is a function to launch a numerical entry/calculator dialog.
+#            The default callback function will be 'on_numerical_entry_return.
+#            It will check to see if the handler file has this function, otherwise it will use the default.
+#        """
+#        if self.data.entry_dialog: return
+#        label = gtk.Label(title)
+#        label.modify_font(pango.FontDescription("sans 20"))
+#        self.data.entry_dialog = gtk.Dialog(title,
+#                   self.widgets.window1,
+#                   gtk.DIALOG_DESTROY_WITH_PARENT,
+#                   (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+#                    gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+#        calc = gladevcp.Calculator()
+#        calc.set_editable(True)
+#        self.data.entry_dialog.vbox.pack_start(label)
+#        self.data.entry_dialog.vbox.add(calc)
+#        calc.set_value("")
+#        calc.set_property("font","sans 20")
+#        calc.entry.connect("activate", lambda w : self.data.entry_dialog.emit('response',gtk.RESPONSE_ACCEPT))
+#        self.data.entry_dialog.parse_geometry("400x400")
+#        #self.data.entry_dialog.set_decorated(False)
+#        if callback in dir(self.handler_instance):
+#            self.data.entry_dialog.connect("response", self.handler_instance[callback],calc,data,data2)
+#        else:
+#            self.data.entry_dialog.connect("response", self[callback],calc,data,data2)
+#        self.data.entry_dialog.show_all()
 
-    def on_numerical_entry_return(self,widget,result,calc,userdata,userdata2):
-        """This is a default callback function from the launch_numerical_input dialog.
-            Requires a status bar called 'statusbar1' to display the answer
-        """
-        data = calc.get_value()
-        if result == gtk.RESPONSE_ACCEPT:
-            print "accept",data
-            if data == None:
-                data = 0
-            self.widgets.statusbar1.push(1,"Last Calculation: %f"%data)
-        widget.destroy()
-        self.data.entry_dialog = None
+#    def on_numerical_entry_return(self,widget,result,calc,userdata,userdata2):
+#        """This is a default callback function from the launch_numerical_input dialog.
+#            Requires a status bar called 'statusbar1' to display the answer
+#        """
+#        data = calc.get_value()
+#        if result == gtk.RESPONSE_ACCEPT:
+#            print "accept",data
+#            if data == None:
+#                data = 0
+#            self.widgets.statusbar1.push(1,"Last Calculation: %f"%data)
+#        widget.destroy()
+#        self.data.entry_dialog = None
 
     def on_offset_origin_entry_return(self,widget,result,calc,userdata,userdata2):
         """This is a callback function from launch_numerical_input dialog when used for origin offset entry.
