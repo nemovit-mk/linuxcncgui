@@ -133,6 +133,8 @@ from gscreen import keybindings
 
 from widget import Widgets
 from data import Data
+from modules.keyboard.keyboard import Keyboard
+from modules.keyboardmain.keyboardmain import Keyboardmain
 
 # this is for hiding the pointer when using a touch screen
 pixmap = gtk.gdk.Pixmap(None, 1, 1, 1)
@@ -774,140 +776,142 @@ class Gscreen:
         """
         pass
 
-    def initialize_keybindings(self):
-        """ add key press and release events to window1, \n
-        call: self.on_key_event(data)
-        data is 1 for press
-        0 for release
-        """
-        self.widgets.window1.connect('key_press_event', self.on_key_event,1)
-        self.widgets.window1.connect('key_release_event', self.on_key_event,0)
+#    def initialize_keybindings(self):
+#        """ add key press and release events to window1, \n
+#        call: self.on_key_event(data)
+#        data is 1 for press
+#        0 for release
+#        """
+#        self.widgets.window1.connect('key_press_event', self.on_key_event,1)
+#        self.widgets.window1.connect('key_release_event', self.on_key_event,0)
 
-    def initialize_preferences(self):
-        """Convience function, calls separate functions\n
-        calls:
-        self.init_dro_pref()
-        self.init_theme_pref()
-        self.init_window_geometry_pref()
-        self.init_keybinding_pref()
-        self.init_general_pref()
-        """
-        self.init_dro_pref()
-        self.init_theme_pref()
-        self.init_window_geometry_pref()
-        self.init_keybinding_pref()
-        self.init_general_pref()
+#    def initialize_preferences(self):
+#        """Convience function, calls separate functions\n
+#        calls:
+#        self.init_dro_pref()
+#        self.init_theme_pref()
+#        self.init_window_geometry_pref()
+#        self.init_keybinding_pref()
+#        self.init_general_pref()
+#        """
+#        self.init_dro_pref()
+#        self.init_theme_pref()
+#        self.init_window_geometry_pref()
+#        self.init_keybinding_pref()
+#        self.init_general_pref()
 
-    def init_dro_pref(self):
-        """ Gets DRO colors and show flag from preference file
-            it adds them to the self.data class
-        """
-        self.data.abs_textcolor = self.prefs.getpref('abs_textcolor', '#0000FFFF0000', str)
-        self.data.dtg_textcolor = self.prefs.getpref('dtg_textcolor', '#00000000FFFF', str)
-        self.data.rel_textcolor = self.prefs.getpref('rel_textcolor', '#FFFF00000000', str)
-        self.data.show_dtg = self.prefs.getpref('show_dtg', False, bool)
+#    def init_dro_pref(self):
+#        """ Gets DRO colors and show flag from preference file
+#            it adds them to the self.data class
+#        """
+#        self.data.abs_textcolor = self.prefs.getpref('abs_textcolor', '#0000FFFF0000', str)
+#        self.data.dtg_textcolor = self.prefs.getpref('dtg_textcolor', '#00000000FFFF', str)
+#        self.data.rel_textcolor = self.prefs.getpref('rel_textcolor', '#FFFF00000000', str)
+#        self.data.show_dtg = self.prefs.getpref('show_dtg', False, bool)
 
-    def init_theme_pref(self):
-        """ assigns the theme name from preference file to self.data.theme_name
-        """
-        self.data.theme_name = self.prefs.getpref('gtk_theme', 'Redmond', str)
+#    def init_theme_pref(self):
+#        """ assigns the theme name from preference file to self.data.theme_name
+#        """
+#        self.data.theme_name = self.prefs.getpref('gtk_theme', 'Redmond', str)
 
-    def init_window_geometry_pref(self):
-        """ assigns the window options from preference file to self.data class
-        assigns to:
-        self.data.fullscreen1
-        self.data.use_screen2
-        self.data.window_geometry
-        self.data.window_max
-        self.data.window2_geometry
-        self.data.window2_max
-        """
-        self.data.fullscreen1 = self.prefs.getpref('fullscreen1', False, bool)
-        self.data.use_screen2 = self.prefs.getpref('use_screen2', False, bool)
-        self.data.window_geometry = self.prefs.getpref('window_geometry', 'default', str)
-        self.data.window_max = self.prefs.getpref('window_force_max', False, bool)
-        self.data.window2_geometry = self.prefs.getpref('window2_geometry', 'default', str)
-        self.data.window2_max = self.prefs.getpref('window2_force_max', False, bool)
+#    def init_window_geometry_pref(self):
+#        """ assigns the window options from preference file to self.data class
+#        assigns to:
+#        self.data.fullscreen1
+#        self.data.use_screen2
+#        self.data.window_geometry
+#        self.data.window_max
+#        self.data.window2_geometry
+#        self.data.window2_max
+#        """
+#        self.data.fullscreen1 = self.prefs.getpref('fullscreen1', False, bool)
+#        self.data.use_screen2 = self.prefs.getpref('use_screen2', False, bool)
+#        self.data.window_geometry = self.prefs.getpref('window_geometry', 'default', str)
+#        self.data.window_max = self.prefs.getpref('window_force_max', False, bool)
+#        self.data.window2_geometry = self.prefs.getpref('window2_geometry', 'default', str)
+#        self.data.window2_max = self.prefs.getpref('window2_force_max', False, bool)
 
-    def init_keybinding_pref(self):
-        """ adds the default keyboard bindings from the prefence file
-        This covers jogging, increments, estop,power and abort
-        A user can change the prefence file entries to change keys
-        Right
-        Left
-        Up
-        Down
-        Page_Up
-        Page_Down
-        bracketleft
-        bracketright
-        i
-        I
-        F1
-        F2
-        Escape
-        """
-        self.keylookup.add_binding('Right', self.prefs.getpref('Key_Right', 'XPOS', str,"KEYCODES"))
-        self.keylookup.add_binding('Left', self.prefs.getpref('Key_Left', 'XNEG', str,"KEYCODES"))
-        self.keylookup.add_binding('Up', self.prefs.getpref('Key_Up', 'YPOS', str,"KEYCODES"))
-        self.keylookup.add_binding('Down', self.prefs.getpref('Key_Down', 'YNEG', str,"KEYCODES"))
-        self.keylookup.add_binding('Page_Up', self.prefs.getpref('Key_Page_Up', 'ZPOS', str,"KEYCODES"))
-        self.keylookup.add_binding('Page_Down', self.prefs.getpref('Key_Page_Down', 'ZNEG', str,"KEYCODES"))
-        self.keylookup.add_binding('bracketleft', self.prefs.getpref('Key_bracketleft', 'APOS', str,"KEYCODES"))
-        self.keylookup.add_binding('bracketright', self.prefs.getpref('Key_bracketright', 'ANEG', str,"KEYCODES"))
-        self.keylookup.add_binding('i', self.prefs.getpref('Key_i', 'INCREMENTS', str,"KEYCODES"))
-        self.keylookup.add_binding('I', self.prefs.getpref('Key_I', 'INCREMENTS', str,"KEYCODES"))
-        self.keylookup.add_binding('F1', self.prefs.getpref('Key_F1', 'ESTOP', str,"KEYCODES"))
-        self.keylookup.add_binding('F2', self.prefs.getpref('Key_F2', 'POWER', str,"KEYCODES"))
-        self.keylookup.add_binding('Escape', self.prefs.getpref('Key_Escape', 'ABORT', str,"KEYCODES"))
+#    def init_keybinding_pref(self):
+#        """ adds the default keyboard bindings from the prefence file
+#        This covers jogging, increments, estop,power and abort
+#        A user can change the prefence file entries to change keys
+#        Right
+#        Left
+#        Up
+#        Down
+#        Page_Up
+#        Page_Down
+#        bracketleft
+#        bracketright
+#        i
+#        I
+#        F1
+#        F2
+#        Escape
+#        """
+#        self.keylookup.add_binding('Right', self.prefs.getpref('Key_Right', 'XPOS', str,"KEYCODES"))
+#        self.keylookup.add_binding('Left', self.prefs.getpref('Key_Left', 'XNEG', str,"KEYCODES"))
+#        self.keylookup.add_binding('Up', self.prefs.getpref('Key_Up', 'YPOS', str,"KEYCODES"))
+#        self.keylookup.add_binding('Down', self.prefs.getpref('Key_Down', 'YNEG', str,"KEYCODES"))
+#        self.keylookup.add_binding('Page_Up', self.prefs.getpref('Key_Page_Up', 'ZPOS', str,"KEYCODES"))
+#        self.keylookup.add_binding('Page_Down', self.prefs.getpref('Key_Page_Down', 'ZNEG', str,"KEYCODES"))
+#        self.keylookup.add_binding('bracketleft', self.prefs.getpref('Key_bracketleft', 'APOS', str,"KEYCODES"))
+#        self.keylookup.add_binding('bracketright', self.prefs.getpref('Key_bracketright', 'ANEG', str,"KEYCODES"))
+#        self.keylookup.add_binding('i', self.prefs.getpref('Key_i', 'INCREMENTS', str,"KEYCODES"))
+#        self.keylookup.add_binding('I', self.prefs.getpref('Key_I', 'INCREMENTS', str,"KEYCODES"))
+#        self.keylookup.add_binding('F1', self.prefs.getpref('Key_F1', 'ESTOP', str,"KEYCODES"))
+#        self.keylookup.add_binding('F2', self.prefs.getpref('Key_F2', 'POWER', str,"KEYCODES"))
+#        self.keylookup.add_binding('Escape', self.prefs.getpref('Key_Escape', 'ABORT', str,"KEYCODES"))
 
-    def init_general_pref(self):
-        """assigns general options from the preference file
-        assigns to:
-        self.data.alert_sound
-        self.data.desktop_notify
-        self.data.diameter_mode
-        self.data.display_order
-        self.data.dro_units 
-        self.data.error_sound
-        self.data.error_font_name
-        self.data.err_textcolor
-        self.data.grid_size
-        self.data.hide_cursor
-        self.data.plot_view
-        self.data.show_offsets
-        self.data.spindle_start_rpm
-        self.data.unlock_code
-        self.data.embedded_keyboard
-        """
-        self.data.alert_sound = self.prefs.getpref('audio_alert', self.data.alert_sound, str)
-        self.data.desktop_notify = self.prefs.getpref('desktop_notify', True, bool)
-        self.data.diameter_mode = self.prefs.getpref('diameter_mode', False, bool)
-        self.data.display_order = self.prefs.getpref('display_order', (0,1,2), repr)
-        self.data.dro_units = self.prefs.getpref('dro_is_metric', False, bool)
-        if self.data.dro_units: # set linuxcnc as well
-            self.status.dro_mm(0)
-        else:
-            self.status.dro_inch(0)
-        self.data.error_sound = self.prefs.getpref('audio_error', self.data.error_sound, str)
-        self.data.error_font_name = self.prefs.getpref('error_font', 'Sans Bold 10', str)
-        self.data.err_textcolor = self.prefs.getpref('err_textcolor', 'default', str)
-        self.data.grid_size = self.prefs.getpref('grid_size', 1.0 , float)
-        self.data.hide_cursor = self.prefs.getpref('hide_cursor', False, bool)
-        self.data.plot_view = self.prefs.getpref('view', ("p","x","y","y2","z","z2"), repr)
-        self.data.show_offsets = self.prefs.getpref('show_offsets', True, bool)
-        self.data.spindle_start_rpm = self.prefs.getpref('spindle_start_rpm', 300 , float)
-        self.data.unlock_code = self.prefs.getpref('unlock_code', '123', str)
-        self.data.embedded_keyboard = self.prefs.getpref('embedded_keyboard', True, bool)
-        if self.prefs.getpref('dro_actual', False, bool):
-           self.status.dro_actual(0)
-        else:
-           self.status.dro_commanded(0)
-        # toolsetting reference type
-        if self.prefs.getpref('toolsetting_fixture', False, bool):
-            self.g10l11 = 1
-        else:
-            self.g10l11 = 0
+#    def init_general_pref(self):
+#        """assigns general options from the preference file
+#        assigns to:
+#        self.data.alert_sound
+#        self.data.desktop_notify
+#        self.data.diameter_mode
+#        self.data.display_order
+#        self.data.dro_units 
+#        self.data.error_sound
+#        self.data.error_font_name
+#        self.data.err_textcolor
+#        self.data.grid_size
+#        self.data.hide_cursor
+#        self.data.plot_view
+#        self.data.show_offsets
+#        self.data.spindle_start_rpm
+#        self.data.unlock_code
+#        self.data.embedded_keyboard
+#        """
+
+#    TODO Find what is need from this
+#        self.data.alert_sound = self.prefs.getpref('audio_alert', self.data.alert_sound, str)
+#        self.data.desktop_notify = self.prefs.getpref('desktop_notify', True, bool)
+#        self.data.diameter_mode = self.prefs.getpref('diameter_mode', False, bool)
+#        self.data.display_order = self.prefs.getpref('display_order', (0,1,2), repr)
+#        self.data.dro_units = self.prefs.getpref('dro_is_metric', False, bool)
+#        if self.data.dro_units: # set linuxcnc as well
+#            self.status.dro_mm(0)
+#        else:
+#            self.status.dro_inch(0)
+#        self.data.error_sound = self.prefs.getpref('audio_error', self.data.error_sound, str)
+#        self.data.error_font_name = self.prefs.getpref('error_font', 'Sans Bold 10', str)
+#        self.data.err_textcolor = self.prefs.getpref('err_textcolor', 'default', str)
+#        self.data.grid_size = self.prefs.getpref('grid_size', 1.0 , float)
+#        self.data.hide_cursor = self.prefs.getpref('hide_cursor', False, bool)
+#        self.data.plot_view = self.prefs.getpref('view', ("p","x","y","y2","z","z2"), repr)
+#        self.data.show_offsets = self.prefs.getpref('show_offsets', True, bool)
+#        self.data.spindle_start_rpm = self.prefs.getpref('spindle_start_rpm', 300 , float)
+#        self.data.unlock_code = self.prefs.getpref('unlock_code', '123', str)
+#        self.data.embedded_keyboard = self.prefs.getpref('embedded_keyboard', True, bool)
+#        if self.prefs.getpref('dro_actual', False, bool):
+#           self.status.dro_actual(0)
+#        else:
+#           self.status.dro_commanded(0)
+#        # toolsetting reference type
+#        if self.prefs.getpref('toolsetting_fixture', False, bool):
+#            self.g10l11 = 1
+#        else:
+#            self.g10l11 = 0
 
 
 
@@ -948,21 +952,21 @@ class Gscreen:
         self.init_state()
         """
         self.init_show_windows()
-        self.init_dynamic_tabs()
-        self.init_axis_frames()
-        self.init_dro_colors()
-        self.init_screen2()
-        self.init_fullscreen1()
-        self.init_gremlin()
+#        self.init_dynamic_tabs()
+#        self.init_axis_frames()
+#        self.init_dro_colors()
+#        self.init_screen2()
+#        self.init_fullscreen1()
+#        self.init_gremlin()
         self.init_manual_spindle_controls()
         self.init_dro()
         self.init_audio()
-        self.init_desktop_notify()
-        self.init_statusbar()
-        self.init_entry()
+#        self.init_desktop_notify()
+#        self.init_statusbar()
+#        self.init_entry()
         self.init_tooleditor()
         self.init_offsetpage()
-        self.init_embeded_terminal()
+#        self.init_embeded_terminal()
         self.init_themes()
         self.init_screen1_geometry()
         self.init_running_options()
@@ -1006,125 +1010,129 @@ class Gscreen:
         if verbose_debug:
             print data
 
-    def init_axis_frames(self):
-        """ This show/hides axis DRO frames for used/unused axes
-            axes frames must be called (eg) 'frame_x' in glade file.
-            It also will try to show angular axes controls if there
-            are rotary axes selected.
-            it will try to show these widgets:
-            self.widgets.button_select_rotary_adjust.show()
-            self.widgets.angular_jog_increments.show()
-            self.widgets.angular_jog_rate.show()
-            if there are not available it will not error.
-        """
-        for letter in ('x','y','z','a','b','c','u','v','w'):
-            try:
-                frame_for_letter = eval("self.widgets." + 'frame_' + letter)
-            except:
-                self.show_try_errors()
-                continue
-            if letter in self.data.axis_list:
-                frame_for_letter.show()
-                # don't show image6 when axes other than xyz are present
-                if letter in ('a','b','c','u','v','w'):
-                    self.widgets.image6.hide() ;# make more room for axis display
-            else:
-                # hide unneeded frames for axes not in use
-                frame_for_letter.hide() ;# frame not relevant
-        if self.data.rotary_joints:
-            try:
-                self.widgets.button_select_rotary_adjust.show()
-                self.widgets.angular_jog_increments.show()
-                self.widgets.angular_jog_rate.show()
-            except:
-                self.show_try_errors()
+#        Removed because have predefined axis
+#    def init_axis_frames(self):
+#        """ This show/hides axis DRO frames for used/unused axes
+#            axes frames must be called (eg) 'frame_x' in glade file.
+#            It also will try to show angular axes controls if there
+#            are rotary axes selected.
+#            it will try to show these widgets:
+#            self.widgets.button_select_rotary_adjust.show()
+#            self.widgets.angular_jog_increments.show()
+#            self.widgets.angular_jog_rate.show()
+#            if there are not available it will not error.
+#        """
+#        for letter in ('x','y','z','a','b','c','u','v','w'):
+#            try:
+#                frame_for_letter = eval("self.widgets." + 'frame_' + letter)
+#            except:
+#                self.show_try_errors()
+#                continue
+#            if letter in self.data.axis_list:
+#                frame_for_letter.show()
+#                # don't show image6 when axes other than xyz are present
+#                if letter in ('a','b','c','u','v','w'):
+#                    self.widgets.image6.hide() ;# make more room for axis display
+#            else:
+#                # hide unneeded frames for axes not in use
+#                frame_for_letter.hide() ;# frame not relevant
+#        if self.data.rotary_joints:
+#            try:
+#                self.widgets.button_select_rotary_adjust.show()
+#                self.widgets.angular_jog_increments.show()
+#                self.widgets.angular_jog_rate.show()
+#            except:
+#                self.show_try_errors()
 
-    def init_dynamic_tabs(self):
-        """ add external programs to tabs as per ini file settings
-        """
-        # dynamic tabs setup
-        self._dynamic_childs = {}
-        atexit.register(self.kill_dynamic_childs)
-        self.set_dynamic_tabs()
+#    def init_dynamic_tabs(self):
+#        """ add external programs to tabs as per ini file settings
+#        """
+#        # dynamic tabs setup
+#        self._dynamic_childs = {}
+#        atexit.register(self.kill_dynamic_childs)
+#        self.set_dynamic_tabs()
 
-    def init_dro_colors(self):
-        """sets the widgets DRO color selection button from the data class
-            for each DRO type.
-            self.widgets.abs_colorbutton
-            self.widgets.rel_colorbutton
-            self.widgets.dtg_colorbutton
-            then sets the DRO widgets to those colors.
-            calls:
-            self.set_abs_color()
-            self.set_rel_color()
-            self.set_dtg_color()
-            Not all screens use these widgets
-        """
-        self.widgets.abs_colorbutton.set_color(gtk.gdk.color_parse(self.data.abs_textcolor))
-        self.set_abs_color()
-        self.widgets.rel_colorbutton.set_color(gtk.gdk.color_parse(self.data.rel_textcolor))
-        self.set_rel_color()
-        self.widgets.dtg_colorbutton.set_color(gtk.gdk.color_parse(self.data.dtg_textcolor))
-        self.set_dtg_color()
+#    def init_dro_colors(self):
+#        """sets the widgets DRO color selection button from the data class
+#            for each DRO type.
+#            self.widgets.abs_colorbutton
+#            self.widgets.rel_colorbutton
+#            self.widgets.dtg_colorbutton
+#            then sets the DRO widgets to those colors.
+#            calls:
+#            self.set_abs_color()
+#            self.set_rel_color()
+#            self.set_dtg_color()
+#            Not all screens use these widgets
+#        """
+#        self.widgets.abs_colorbutton.set_color(gtk.gdk.color_parse(self.data.abs_textcolor))
+#        self.set_abs_color()
+#        self.widgets.rel_colorbutton.set_color(gtk.gdk.color_parse(self.data.rel_textcolor))
+#        self.set_rel_color()
+#        self.widgets.dtg_colorbutton.set_color(gtk.gdk.color_parse(self.data.dtg_textcolor))
+#        self.set_dtg_color()
 
-    def init_screen2(self):
-        """Sets the button that selects the optional second window visibilty
-            the second window is meant to be placed on a second monitor
-        """
-        self.widgets.use_screen2.set_active(self.data.use_screen2)
+#    def init_screen2(self):
+#        """Sets the button that selects the optional second window visibilty
+#            the second window is meant to be placed on a second monitor
+#        """
+#        self.widgets.use_screen2.set_active(self.data.use_screen2)
 
-    def init_fullscreen1(self):
-        """ Sets the button that selects the screen to use whole screen with no border panels
-        """
-        self.widgets.fullscreen1.set_active(self.data.fullscreen1)
+#    def init_fullscreen1(self):
+#        """ Sets the button that selects the screen to use whole screen with no border panels
+#        """
+#        self.widgets.fullscreen1.set_active(self.data.fullscreen1)
 
-    def init_gremlin(self):
-        """ initalizes the plot screen options from the data class
-            expects the plot widget to be called gremlin
-        """ 
-        self.widgets.show_offsets.set_active( self.data.show_offsets )
-        self.widgets.gremlin.show_offsets = self.data.show_offsets
-        self.widgets.grid_size.set_value(self.data.grid_size)
-        self.widgets.gremlin.grid_size = self.data.grid_size
-        self.widgets.gremlin.set_property('view',self.data.plot_view[0])
-        self.widgets.gremlin.set_property('metric_units',(self.data.dro_units == self.data._MM))
+#    def init_gremlin(self):
+#        """ initalizes the plot screen options from the data class
+#            expects the plot widget to be called gremlin
+#        """ 
+#        self.widgets.show_offsets.set_active( self.data.show_offsets )
+#        self.widgets.gremlin.show_offsets = self.data.show_offsets
+#        self.widgets.grid_size.set_value(self.data.grid_size)
+#        self.widgets.gremlin.grid_size = self.data.grid_size
+#        self.widgets.gremlin.set_property('view',self.data.plot_view[0])
+#        self.widgets.gremlin.set_property('metric_units',(self.data.dro_units == self.data._MM))
 
     def init_manual_spindle_controls(self):
         """ set spindle default start rpm
             set spindle control widgets to corespond to data class 
         """
-        self.widgets.spindle_start_rpm.set_value(self.data.spindle_start_rpm)
-        self.block("s_display_fwd")
-        self.widgets.s_display_fwd.set_active(True)
-        self.unblock("s_display_fwd")
-        self.preset_spindle_speed(self.data.spindle_start_rpm)
+#        TODO Need to set spindle default
+#        self.widgets.spindle_start_rpm.set_value(self.data.spindle_start_rpm)
+#        self.block("s_display_fwd")
+#        self.widgets.s_display_fwd.set_active(True)
+#        self.unblock("s_display_fwd")
+#        self.preset_spindle_speed(self.data.spindle_start_rpm)
 
     def init_dro(self):
         """ set dro widgets diameter_mode and dro_units as pe data class
         """
-        self.widgets.diameter_mode.set_active(self.data.diameter_mode)
-        self.widgets.dro_units.set_active(self.data.dro_units)
+#        Need to set diameter mode coresponding to my widgets
+#        self.widgets.diameter_mode.set_active(self.data.diameter_mode)
+#        self.widgets.dro_units.set_active(self.data.dro_units)
 
     def init_audio(self):
         """preselect ausio alert and error sounds as per data class
         """
-        self.widgets.audio_alert_chooser.set_filename(self.data.alert_sound)
-        self.widgets.audio_error_chooser.set_filename(self.data.error_sound)
+#        TODO Do we need audio?
+#        self.widgets.audio_alert_chooser.set_filename(self.data.alert_sound)
+#        self.widgets.audio_error_chooser.set_filename(self.data.error_sound)
 
-    def init_desktop_notify(self):
-        """set destop_notfy widget active as per data class
-        """
-        self.widgets.desktop_notify.set_active(self.data.desktop_notify)
+#    def init_desktop_notify(self):
+#        """set destop_notfy widget active as per data class
+#        """
+#        self.widgets.desktop_notify.set_active(self.data.desktop_notify)
 
-    def init_statusbar(self):
-        """ Preset statusbar with homing message
-            expects widget to be named statusbar1
-        """
-        self.statusbar_id = self.widgets.statusbar1.get_context_id("Statusbar1")
-        self.homed_status_message = self.widgets.statusbar1.push(1,"Ready For Homing")
+#    def init_statusbar(self):
+#        """ Preset statusbar with homing message
+#            expects widget to be named statusbar1
+#        """
+#        self.statusbar_id = self.widgets.statusbar1.get_context_id("Statusbar1")
+#        self.homed_status_message = self.widgets.statusbar1.push(1,"Ready For Homing")
 
-    def init_entry(self):
-        return
+#    def init_entry(self):
+#        return
 
     # first we hide all the axis columns the unhide the ones we want
     # if it's a lathe config we show lathe related columns
@@ -1134,13 +1142,14 @@ class Gscreen:
            set path to tooltable as per data class
            expects widget to be named tooledit1
         """
-        self.widgets.tooledit1.set_visible("abcxyzuvwijq",False)
-        for axis in self.data.axis_list:
-            self.widgets.tooledit1.set_visible("%s"%axis,True)
-        if self.data.lathe_mode:
-            self.widgets.tooledit1.set_visible("ijq",True)
-        path = os.path.join(CONFIGPATH,self.data.tooltable)
-        self.widgets.tooledit1.set_filename(path)
+#        TODO Use for tooledit
+#        self.widgets.tooledit1.set_visible("abcxyzuvwijq",False)
+#        for axis in self.data.axis_list:
+#            self.widgets.tooledit1.set_visible("%s"%axis,True)
+#        if self.data.lathe_mode:
+#            self.widgets.tooledit1.set_visible("ijq",True)
+#        path = os.path.join(CONFIGPATH,self.data.tooltable)
+#        self.widgets.tooledit1.set_filename(path)
 
     # Only show the rows of the axes we use
     # set the var path so offsetpage can fill in all the user system offsets
@@ -1149,113 +1158,115 @@ class Gscreen:
            set path to the variable file
            expects widgets to be named offsetpage1
         """
-        self.widgets.offsetpage1.set_col_visible('xyzabcuvw',False)
-        temp =""
-        for axis in self.data.axis_list:
-            temp=temp+axis
-        self.widgets.offsetpage1.set_col_visible(temp,True)
-        path = os.path.join(CONFIGPATH,self.data.varfile)
-        self.widgets.offsetpage1.set_filename(path)
+#        Need to know what is ofsetpage is
+#        self.widgets.offsetpage1.set_col_visible('xyzabcuvw',False)
+#        temp =""
+#        for axis in self.data.axis_list:
+#            temp=temp+axis
+#        self.widgets.offsetpage1.set_col_visible(temp,True)
+#        path = os.path.join(CONFIGPATH,self.data.varfile)
+#        self.widgets.offsetpage1.set_filename(path)
 
-    def init_embeded_terminal(self):
-        """add a terminal window
-           expects widget to be called terminal_window
-           widget usually is a scrolled window widget
-        """
-        # add terminal window
-        self.widgets._terminal = vte.Terminal ()
-        self.widgets._terminal.connect ("child-exited", lambda term: gtk.main_quit())
-        self.widgets._terminal.fork_command()
-        self.widgets._terminal.show()
-        window = self.widgets.terminal_window.add(self.widgets._terminal)
-        self.widgets.terminal_window.connect('delete-event', lambda window, event: gtk.main_quit())
-        self.widgets.terminal_window.show()
+#    def init_embeded_terminal(self):
+#        """add a terminal window
+#           expects widget to be called terminal_window
+#           widget usually is a scrolled window widget
+#        """
+#        # add terminal window
+#        self.widgets._terminal = vte.Terminal ()
+#        self.widgets._terminal.connect ("child-exited", lambda term: gtk.main_quit())
+#        self.widgets._terminal.fork_command()
+#        self.widgets._terminal.show()
+#        window = self.widgets.terminal_window.add(self.widgets._terminal)
+#        self.widgets.terminal_window.connect('delete-event', lambda window, event: gtk.main_quit())
+#        self.widgets.terminal_window.show()
 
-    def init_themes(self):
-        """adds theme names to comdo box
-           expects combo widget to be named 'theme_choice'
-           sets theme to either local theme (theme in config file) or
-           to theme set in data class
-           otherwise it follows the system theme
-        """
-        # If there are themes then add them to combo box
-        model = self.widgets.theme_choice.get_model()
-        model.clear()
-        # add the default system theme
-        model.append(("Follow System Theme",))
-        # if there is a local custom theme add it
-        if self.data.local_theme:
-            model.append(("Local Config Theme",))
-        themes = []
-        # add user themes
-        if os.path.exists(userthemedir):
-            names = os.listdir(userthemedir)
-            names.sort()
-            for dirs in names:
-                # don't add local custom themes
-                if 'Link' in dirs:
-                    continue
-                try:
-                    sbdirs = os.listdir(os.path.join(userthemedir, dirs))
-                    if 'gtk-2.0' in sbdirs:
-                        themes.append(dirs)
-                except:
-                    pass
-        # add system themes
-        if os.path.exists(themedir):
-            names = os.listdir(themedir)
-            names.sort()
-            for dirs in names:
-                try:
-                    sbdirs = os.listdir(os.path.join(themedir, dirs))
-                    if 'gtk-2.0' in sbdirs:
-                        themes.append(dirs)
-                except:
-                    pass
-        # add names to the combobox model
-        temp = 0
-        for index,theme in enumerate(themes):
-            model.append((theme,))
-            if theme == self.data.theme_name:
-                temp = index+1
-        self.widgets.theme_choice.set_active(temp)
+#    def init_themes(self):
+#        """adds theme names to comdo box
+#           expects combo widget to be named 'theme_choice'
+#           sets theme to either local theme (theme in config file) or
+#           to theme set in data class
+#           otherwise it follows the system theme
+#        """
+#        # If there are themes then add them to combo box
+#        model = self.widgets.theme_choice.get_model()
+#        model.clear()
+#        # add the default system theme
+#        model.append(("Follow System Theme",))
+#        # if there is a local custom theme add it
+#        if self.data.local_theme:
+#            model.append(("Local Config Theme",))
+#        themes = []
+#        # add user themes
+#        if os.path.exists(userthemedir):
+#            names = os.listdir(userthemedir)
+#            names.sort()
+#            for dirs in names:
+#                # don't add local custom themes
+#                if 'Link' in dirs:
+#                    continue
+#                try:
+#                    sbdirs = os.listdir(os.path.join(userthemedir, dirs))
+#                    if 'gtk-2.0' in sbdirs:
+#                        themes.append(dirs)
+#                except:
+#                    pass
+#        # add system themes
+#        if os.path.exists(themedir):
+#            names = os.listdir(themedir)
+#            names.sort()
+#            for dirs in names:
+#                try:
+#                    sbdirs = os.listdir(os.path.join(themedir, dirs))
+#                    if 'gtk-2.0' in sbdirs:
+#                        themes.append(dirs)
+#                except:
+#                    pass
+#        # add names to the combobox model
+#        temp = 0
+#        for index,theme in enumerate(themes):
+#            model.append((theme,))
+#            if theme == self.data.theme_name:
+#                temp = index+1
+#        self.widgets.theme_choice.set_active(temp)
 
-        # set combobox selection and use new theme
-        if self.data.local_theme is not None:
-            self.widgets.theme_choice.set_active(1)
-            self.data.theme_name = self.data.local_theme
-        else:
-            self.data.theme_name = "Follow System Theme"
-        settings = gtk.settings_get_default()
-        if not self.data.theme_name == "Follow System Theme":
-            settings.set_string_property("gtk-theme-name", self.data.theme_name, "")
+#        # set combobox selection and use new theme
+#        if self.data.local_theme is not None:
+#            self.widgets.theme_choice.set_active(1)
+#            self.data.theme_name = self.data.local_theme
+#        else:
+#            self.data.theme_name = "Follow System Theme"
+#        settings = gtk.settings_get_default()
+#        if not self.data.theme_name == "Follow System Theme":
+#            settings.set_string_property("gtk-theme-name", self.data.theme_name, "")
 
-    def init_screen1_geometry(self):
-        """set geometry of window as per data class
-           expecta window widget to be called window1
-        """
-        # maximize window or set geometry and optionally maximize 
-        if "max" in self.data.window_geometry:
-		    self.widgets.window1.maximize()
-        elif self.data.window_geometry == "default":
-            self.show_try_errors()
-        else:
-            good = self.widgets.window1.parse_geometry(self.data.window_geometry)
-            if self.data.window_max:
-               self.widgets.window1.maximize()
-            if not good:
-                print _("**** WARNING GSCREEN: could not understand the window geometry info in hidden preference file")
-        if self.widgets.fullscreen1.get_active():
-            self.widgets.window1.fullscreen()
+#    def init_screen1_geometry(self):
+#        """set geometry of window as per data class
+#           expecta window widget to be called window1
+#        """
+#        # maximize window or set geometry and optionally maximize 
+#        if "max" in self.data.window_geometry:
+#		    self.widgets.window1.maximize()
+#        elif self.data.window_geometry == "default":
+#            self.show_try_errors()
+#        else:
+#            good = self.widgets.window1.parse_geometry(self.data.window_geometry)
+#            if self.data.window_max:
+#               self.widgets.window1.maximize()
+#            if not good:
+#                print _("**** WARNING GSCREEN: could not understand the window geometry info in hidden preference file")
+#        if self.widgets.fullscreen1.get_active():
+#            self.widgets.window1.fullscreen()
 
     def init_running_options(self):
         """set button widgets and linuxcnc for block delete and optional stop
            expects buttons widgets to be called button_block_delete and button_optional_stop
         """
-        self.widgets.button_block_delete.set_active(self.prefs.getpref('blockdel', False))
-        self.emc.blockdel(self.data.block_del)
-        self.widgets.button_option_stop.set_active(self.prefs.getpref('opstop', False))
-        self.emc.opstop(self.data.op_stop)
+#        TODO Need to know what is this doing
+#        self.widgets.button_block_delete.set_active(self.prefs.getpref('blockdel', False))
+#        self.emc.blockdel(self.data.block_del)
+#        self.widgets.button_option_stop.set_active(self.prefs.getpref('opstop', False))
+#        self.emc.opstop(self.data.op_stop)
 
     def init_hide_cursor(self):
         """set hide cursor button as per data class
@@ -1264,84 +1275,93 @@ class Gscreen:
            expects window to be called window1
            expects plot to be called gremlin
         """
-        self.widgets.hide_cursor.set_active(self.data.hide_cursor)
-        # hide cursor if requested
-        # that also sets the graphics to use touchscreen controls
-        if self.data.hide_cursor:
-            self.widgets.window1.window.set_cursor(INVISABLE)
-            self.widgets.gremlin.set_property('use_default_controls',False)
-        else:
-            self.widgets.window1.window.set_cursor(None)
-            self.widgets.gremlin.set_property('use_default_controls',True)
+#        TODO It can be useful
+#        self.widgets.hide_cursor.set_active(self.data.hide_cursor)
+#        # hide cursor if requested
+#        # that also sets the graphics to use touchscreen controls
+#        if self.data.hide_cursor:
+#            self.widgets.window1.window.set_cursor(INVISABLE)
+#            self.widgets.gremlin.set_property('use_default_controls',False)
+#        else:
+#            self.widgets.window1.window.set_cursor(None)
+#            self.widgets.gremlin.set_property('use_default_controls',True)
 
     def init_mode(self):
         """set label of mode button to manual mode
            set linuxcnc to manual mode
            expects button wodget to be called button_mode
         """
-        label = self.data.mode_labels
-        self.widgets.button_mode.set_label(label[self.data.mode_order[0]])
-        # set to 'manual mode' 
-        self.mode_changed(self.data.mode_order[0])
+#        TODO Set mode
+#        label = self.data.mode_labels
+#        self.widgets.button_mode.set_label(label[self.data.mode_order[0]])
+#        # set to 'manual mode' 
+#        self.mode_changed(self.data.mode_order[0])
 
     # buttons that need to be sensitive based on the machine being on or off
     def init_sensitive_on_off(self):
         """creates a list of widgets that need to be sensitive to machine on/off
            list is held in data.sensitive_on_off
         """
-        self.data.sensitive_on_off = ["vmode0","mode0","mode1","button_homing","button_override","button_graphics","frame_s","button_mode","button_restart"]
-        for axis in self.data.axis_list:
-            self.data.sensitive_on_off.append("axis_%s"% axis)
+#        TODO Need to make oun list
+#        self.data.sensitive_on_off = ["vmode0","mode0","mode1","button_homing","button_override","button_graphics","frame_s","button_mode","button_restart"]
+#        for axis in self.data.axis_list:
+#            self.data.sensitive_on_off.append("axis_%s"% axis)
 
     # buttons that need to be sensitive based on the interpeter runing or being idle
     def init_sensitive_run_idle(self):
         """creates a list of widgets that need to be sensitive to interpeter run/idle
            list is held in data.sensitive_run/idle
         """
-        self.data.sensitive_run_idle = ["button_edit","button_load","button_mode","button_restart"]
-        for axis in self.data.axis_list:
-            self.data.sensitive_run_idle.append("axis_%s"% axis)
+#        TODO Need to make oun list
+#        self.data.sensitive_run_idle = ["button_edit","button_load","button_mode","button_restart"]
+#        for axis in self.data.axis_list:
+#            self.data.sensitive_run_idle.append("axis_%s"% axis)
 
     def init_sensitive_all_homed(self):
         """creates a list of widgets that need to be sensitive to all homed
            list is held in data.sensitive_all_homed
         """
-        self.data.sensitive_all_homed = ["button_zero_origin","button_offset_origin","button_select_system","button_tool_set"]
+#        TODO Need to make oun list
+#        self.data.sensitive_all_homed = ["button_zero_origin","button_offset_origin","button_select_system","button_tool_set"]
 
     def init_sensitive_edit_mode(self):
         """creates a list of widgets that need to be sensitive to edit mode
            list is held in data.sensitive_edit_mode
         """
-        self.data.sensitive_edit_mode = ["button_mode","button_menu","button_graphics","button_override","button_restart",
-            "button_single_step","button_run","ignore_limits"]
+#        TODO Need to make oun list
+#        self.data.sensitive_edit_mode = ["button_mode","button_menu","button_graphics","button_override","button_restart",
+#            "button_single_step","button_run","ignore_limits"]
 
     def init_sensitive_override_mode(self):
         """creates a list of widgets that need to be sensitive to override mode
            list is held in data.sensitive_override_mode
         """
-        self.data.sensitive_override_mode = ["spindle_preset","spindle_control","spindle_increase","spindle_decrease","s_display_fwd",
-            "s_display_rev","button_graphics","button_homing","button_mode","button_jog_mode","button_flood_coolant",
-                "button_mist_coolant","button_tool_editor","button_tool_set"]
-        for axis in self.data.axis_list:
-            self.data.sensitive_override_mode.append("axis_%s"% axis)
+#        TODO Need to make oun list
+#        self.data.sensitive_override_mode = ["spindle_preset","spindle_control","spindle_increase","spindle_decrease","s_display_fwd",
+#            "s_display_rev","button_graphics","button_homing","button_mode","button_jog_mode","button_flood_coolant",
+#                "button_mist_coolant","button_tool_editor","button_tool_set"]
+#        for axis in self.data.axis_list:
+#            self.data.sensitive_override_mode.append("axis_%s"% axis)
 
     def init_sensitive_graphics_mode(self):
         """creates a list of widgets that need to be sensitive to graphics mode
            list is held in data.sensitive_graphics_mode
         """
-        self.data.sensitive_graphics_mode = ["button_override","button_homing","button_mode",
-              "button_zero_origin","button_offset_origin","button_plus","button_minus","vmode0","button_tool_set"]
-        for axis in self.data.axis_list:
-            self.data.sensitive_graphics_mode.append("axis_%s"% axis)
+#        TODO Need to make oun list
+#        self.data.sensitive_graphics_mode = ["button_override","button_homing","button_mode",
+#              "button_zero_origin","button_offset_origin","button_plus","button_minus","vmode0","button_tool_set"]
+#        for axis in self.data.axis_list:
+#            self.data.sensitive_graphics_mode.append("axis_%s"% axis)
 
     def init_sensitive_origin_mode(self):
         """creates a list of widgets that need to be sensitive to origin mode
            list is held in data.sensitive_origin_mode
         """
-        self.data.sensitive_origin_mode = ["button_override","button_graphics","button_homing","button_mode",
-                "button_zero_origin","button_offset_origin","button_jog_mode","button_flood_coolant","button_mist_coolant","button_tool_editor","button_tool_set"]
-        for axis in self.data.axis_list:
-            self.data.sensitive_origin_mode.append("axis_%s"% axis)
+#        TODO Need to make oun list
+#        self.data.sensitive_origin_mode = ["button_override","button_graphics","button_homing","button_mode",
+#                "button_zero_origin","button_offset_origin","button_jog_mode","button_flood_coolant","button_mist_coolant","button_tool_editor","button_tool_set"]
+#        for axis in self.data.axis_list:
+#            self.data.sensitive_origin_mode.append("axis_%s"% axis)
 
     # this needs to be last as it causes methods to be called (eg to sensitize buttons)
     def init_state(self):
@@ -1358,7 +1378,7 @@ class Gscreen:
         self.data.current_jogincr_index = num
         try:
             jogincr = self.data.jog_increments[self.data.current_jogincr_index]
-            self.widgets.jog_increments.set_text(jogincr)
+#            self.widgets.jog_increments.set_text(jogincr)
         except:
             self.show_try_errors()
         try:
@@ -1366,12 +1386,12 @@ class Gscreen:
                 if i == "continuous": break
             self.data.current_angular_jogincr_index = num
             jogincr = self.data.angular_jog_increments[self.data.current_angular_jogincr_index]
-            self.widgets.angular_jog_increments.set_text(jogincr)
+#            self.widgets.angular_jog_increments.set_text(jogincr)
         except:
             self.show_try_errors()
         self.on_hal_status_state_off(None)
         try:
-            self.widgets.search_box.hide()
+#            self.widgets.search_box.hide()
         except:
             self.show_try_errors()
         self.add_alarm_entry(_("Control powered up and initialized"))
@@ -1380,25 +1400,34 @@ class Gscreen:
         """set title of window to skinname
            show window1 and optional window2 (if selected to)
         """
-        # set title and display everything including the second screen if requested
-        if self.skinname == "gscreen":
-            title = "Gscreen"
-        else:
-            title = "Gscreen-%s"% self.skinname
-        self.widgets.window1.set_title("%s for linuxcnc"% title)
-        if self.screen2:
-            self.widgets.window2.show()
-            self.widgets.window2.move(0,0)
-            if not self.data.use_screen2:
-                self.widgets.window2.hide()
+#        # set title and display everything including the second screen if requested
+#        if self.skinname == "gscreen":
+#            title = "Gscreen"
+#        else:
+#            title = "Gscreen-%s"% self.skinname
+#        self.widgets.window1.set_title("%s for linuxcnc"% title)
+#        if self.screen2:
+#            self.widgets.window2.show()
+#            self.widgets.window2.move(0,0)
+#            if not self.data.use_screen2:
+#                self.widgets.window2.hide()
+
+        self.widgets.window2 = Keyboard()
+        self.widgets.window2.connect('key_press_keyboard', self.on_keyboard_signal)
+
+        self.widgets.window3 = Keyboardmain()
+        self.widgets.window3.connect('key_press_keyboard_main', self.on_main_kayboard_signal)
+
+        self.widgets.window1.set_title("Sinumeric 840D")
         self.widgets.window1.show()
 
-    def init_unlock_code(self):
-        """set unlock code from data class
-           expects widget to be called unlock_number
-        """
-        print "unlock code #",int(self.data.unlock_code)
-        self.widgets.unlock_number.set_value(int(self.data.unlock_code))
+#        TODO No information what is this
+#    def init_unlock_code(self):
+#        """set unlock code from data class
+#           expects widget to be called unlock_number
+#        """
+#        print "unlock code #",int(self.data.unlock_code)
+#        self.widgets.unlock_number.set_value(int(self.data.unlock_code))
 
     # general call to initialize HAL pins
     # select this if you want all the default pins or select each call for 

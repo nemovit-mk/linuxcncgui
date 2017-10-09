@@ -37,7 +37,9 @@ from hal_filechooser import *
 
 from hal_sourceview import *
 from hal_mdihistory import *
-from hal_mdihistory840d import *
+from widgets.screen_tool import Screen_Tool
+from widgets.screen_rvar import Screen_Rvar
+from widgets.hal_mdihistory840d import *
 
 from hal_pyngcgui import PyNgcGui
 from hal_gremlin_plus import HAL_GremlinPlus

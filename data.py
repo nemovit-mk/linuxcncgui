@@ -9,6 +9,7 @@ _SPINDLE_INPUT = 1;_PERCENT_INPUT = 2;_VELOCITY_INPUT = 3;_DEGREE_INPUT = 4
 # here we intialize the data
 class Data:
     def __init__(self):
+        self.CURRENTSCREEN = "screen_rvar"
         # constants for mode idenity
         self._MAN = 0
         self._MDI = 1
