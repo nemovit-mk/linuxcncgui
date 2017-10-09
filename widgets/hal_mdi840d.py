@@ -1,0 +1,1 @@
+/usr/share/pyshared/gladevcp/widgets/hal_mdi840d.py
