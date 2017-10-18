@@ -195,7 +195,7 @@ class Gfile():
 #            fp.write(cmd + "\n")
             for l in self.list:
                 line = l.get_text()
-                fp.write(line + "\n"
+                fp.write(line + "\n")
             fp.close()
         except:
             pass

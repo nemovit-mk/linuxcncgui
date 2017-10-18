@@ -57,6 +57,9 @@ class Screen_Rvar(gtk.VBox):
 #        self.pack_start(self.screen)
         self.sensitive = True
 
+
+        self.action = gobject.GObject()
+
         self.labelX = labels_X("screen_rvar")
         self.labelY = labels_Y("screen_rvar")
         self.prnt_screen = "main_screen"
@@ -91,6 +94,9 @@ class Screen_Rvar(gtk.VBox):
         self.style()
         self.screen.reparent(self)
         self.show_all()
+
+    def update(self):
+        print("OK")
 
     def on_key_pressed(self, data):
 #        out = labels_X("screen_rvar")

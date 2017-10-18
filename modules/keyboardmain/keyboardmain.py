@@ -29,7 +29,7 @@ import gobject
 
 import gladevcp.makepins
 #from gladevcp.gladebuilder import GladeBuilder
-from linuxcnc_actions import *
+#from linuxcnc_actions import *
 from widget import Widgets
 from color import Color
 
@@ -38,7 +38,7 @@ IMAGEDIR = os.path.join(py_file_dir , "ui")
 
 class Keyboardmain(gobject.GObject):
 
-    def __init__(self):
+    def __init__(self, action_class):
     
         self.__gobject_init__()
 
@@ -51,16 +51,18 @@ class Keyboardmain(gobject.GObject):
 
         self.widgets.window3.connect('destroy', self.on_window_destroy)
 
-        self.stp_ptn_release= os.path.join(IMAGEDIR, 'un_stop.png')
-        self.stp_ptn_pressed= os.path.join(IMAGEDIR, 'stop.png')
+        self.stp_btn_release = os.path.join(IMAGEDIR, 'un_stop.png')
+        self.stp_btn_pressed = os.path.join(IMAGEDIR, 'stop.png')
+        self.key_on = os.path.join(IMAGEDIR, 'key2.png')
+        self.key_off = os.path.join(IMAGEDIR, 'key.png')
         self.estopped = True
         
         self.colors = Color()
         self.set_style()
         self.connect_signals()
+        self.action = action_class
         self.update()
         self.show()
-
 
 # ==========================================================
 # Set style
@@ -83,22 +85,17 @@ class Keyboardmain(gobject.GObject):
 # Update
 # ==========================================================
     def update (self, data = None):
-        if chek_mode(linuxcnc.MODE_MDI):
-            self.widgets.ld11.set_active(False)
-            self.widgets.ld31.set_active(True)
-            self.widgets.ld41.set_active(False)
-        elif chek_mode(linuxcnc.MODE_AUTO):
-            self.widgets.ld11.set_active(False)
-            self.widgets.ld31.set_active(False)
-            self.widgets.ld41.set_active(True)
-        elif chek_mode(linuxcnc.MODE_MANUAL):
-            self.widgets.ld11.set_active(True)
-            self.widgets.ld31.set_active(False)
-            self.widgets.ld41.set_active(False)
-        else:
-            self.widgets.ld11.set_active(False)
-            self.widgets.ld31.set_active(False)
-            self.widgets.ld41.set_active(False)
+        self.widgets.ld11.set_active(self.action.is_JOG)
+        self.widgets.ld31.set_active(self.action.is_MDI)
+        self.widgets.ld41.set_active(self.action.is_AUTO)
+        if self.action.estopped:
+            self.widgets.stp_btn.set_from_file(self.stp_btn_pressed)
+        else: 
+            self.widgets.stp_btn.set_from_file(self.stp_btn_release)
+        if self.action.is_ON:
+            self.widgets.key.set_from_file(self.key_on)
+        else: 
+            self.widgets.key.set_from_file(self.key_off)
 
 # ==========================================================
 # Connect signals
@@ -142,31 +139,46 @@ class Keyboardmain(gobject.GObject):
             self.widgets.mkb61.connect('clicked', self.on_mkb61_clicked)
             self.widgets.mkb62.connect('clicked', self.on_mkb62_clicked)
             self.widgets.mkb63.connect('clicked', self.on_mkb63_clicked)
-            self.widgets.stp_btn_box.connect('button-press-event', self.on_stp_btn_clicked)
+            self.widgets.stp_btn_box.connect('button-release-event', self.on_stp_btn_clicked)
+            self.widgets.key_box.connect('button-release-event', self.on_key_btn_clicked)
     
 #        except:
 #            print ("Signal connection of Keyboard Main: could not connect ")
 
+    def show_msg(self, msg):
+        parent = None
+        md = gtk.MessageDialog(parent, 
+            gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_INFO, 
+            gtk.BUTTONS_CLOSE, str(msg))
+        md.run()
 
 # ==========================================================
 # On key pressed
 # ==========================================================
 
     def on_stp_btn_clicked(self, data = None, data2 = None):
-        if estop_clicked:
-            if self.estopped:
-                self.estopped = False
-                self.widgets.stp_btn.set_from_file(self.stp_ptn_release)
-                print("un STOP")
-            else: 
-                self.estopped = True
-                self.widgets.stp_btn.set_from_file(self.stp_ptn_pressed)
-                print("STOP")
+        if self.action.estopped:
+            self.action.estop_release()
+#            self.show_msg("release")
+        else:
+            self.action.estop_press()
+#            self.show_msg("press")
+#        if estop_clicked:
+
+
+    def on_key_btn_clicked(self, data = None, data2 = None):
+        if not self.action.is_ON:
+            self.action.on_keyswitch_on()
+#            self.show_msg("ON")
+        else:
+            self.action.on_keyswitch_off()
+#            self.show_msg("OFF")
 
     def on_mkb11_clicked(self, widget, data=None):
-        if set_mode(linuxcnc.MODE_MANUAL): print ("JOG %r"% manual_ok())
-        self.update()
+        self.action.set_jog()
     def on_mkb12_clicked(self, widget, data=None):
+#        self.action.add_one()
+#        self.emit_signal()
         print ("OK")
     def on_mkb13_clicked(self, widget, data=None):
         print ("OK")
@@ -189,8 +201,7 @@ class Keyboardmain(gobject.GObject):
         print ("OK")
 
     def on_mkb31_clicked(self, widget, data=None):
-        if set_mode(linuxcnc.MODE_MDI): print ("MDI")
-        self.update()
+        self.action.set_mdi()
     def on_mkb32_clicked(self, widget, data=None):
         print ("OK")
     def on_mkb33_clicked(self, widget, data=None):
@@ -201,8 +212,7 @@ class Keyboardmain(gobject.GObject):
         print ("OK")
 
     def on_mkb41_clicked(self, widget, data=None):
-        if set_mode(linuxcnc.MODE_AUTO): print ("AUTO")
-        self.update()
+        self.action.set_auto()
     def on_mkb42_clicked(self, widget, data=None):
         print ("OK")
     def on_mkb43_clicked(self, widget, data=None):
@@ -254,7 +264,7 @@ class Keyboardmain(gobject.GObject):
 # ==========================================================
 # Emmit signals
 # ==========================================================
-    def _emit_signal(self, data):
+    def emit_signal(self, data = None):
         if data:
             self.data = data
         else: self.data = ""

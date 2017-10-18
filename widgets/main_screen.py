@@ -50,6 +50,7 @@ class Main_Screen(gtk.VBox):
         path = self.ini.find('DISPLAY', 'MDI_HISTORY_FILE') or '~/.axis_mdi_history'
         self.filename = os.path.expanduser(path)
 
+        self.action = gobject.GObject()
         gladefile = os.path.join( datadir, "../ui/main.glade" )
         self.bldr = gtk.Builder()
         self.bldr.add_from_file(gladefile)
@@ -92,6 +93,32 @@ class Main_Screen(gtk.VBox):
 
         self.show_all()
 
+    def update(self):
+        if self.action.x_in_ref: 
+            self.widget.xhmd.set_label("X")
+        else: 
+            self.widget.xhmd.set_label("O")
+        if self.action.z_in_ref: 
+            self.widget.zhmd.set_label("X")
+        else:
+            self.widget.zhmd.set_label("O")
+
+        self.widget.dro_x.set_label(str(self.action.dro_abs_x))
+        self.widget.dro_z.set_label(str(self.action.dro_abs_z))
+        self.widget.dro_c.set_label(str(self.action.dro_abs_c))
+        
+        self.widget.act_s.set_label(str(self.action.dro_abs_c))
+        self.widget.set_s.set_label(str(self.action.dro_abs_c))
+        self.widget.pos_s.set_label(str(self.action.dro_abs_c))
+        self.widget.spindle_percent.set_label(str(self.action.dro_abs_c))
+
+
+        self.widget.act_feed.set_label(str(self.action.dro_abs_c))
+        self.widget.set_feed.set_label(str(self.action.dro_abs_c))
+        self.widget.feed_per.set_label(str(self.action.dro_abs_c))
+        self.widget.presel_tool.set_label(str(self.action.dro_abs_c))
+        self.widget.tool_g_lbl.set_label(str(self.action.dro_abs_c))
+
     def on_key_pressed(self, data):
         if self.sensitive:
             self.mdi.on_key_pressed(data)
@@ -120,10 +147,13 @@ class Main_Screen(gtk.VBox):
 #            self.actions_on_leave()
             self.change_screen()
         elif key == "AUTO":
+            self.action.set_auto()
             print("WCS")
         elif key == "MDI":
+            self.action.set_mdi()
             print("WCS")
         elif key == "JOG":
+            self.action.set_jog()
             print("WCS")
         elif key == "REPOS":
             print("WCS")

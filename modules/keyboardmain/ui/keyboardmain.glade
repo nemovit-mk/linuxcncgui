@@ -533,15 +533,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="image1">
-            <property name="width_request">762</property>
-            <property name="height_request">300</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="pixbuf">klava.jpg</property>
-          </object>
-        </child>
-        <child>
           <object class="GtkLayout" id="layout32">
             <property name="width_request">420</property>
             <property name="height_request">50</property>
@@ -1970,6 +1961,44 @@
             <property name="x">5</property>
             <property name="y">36</property>
           </packing>
+        </child>
+        <child>
+          <object class="GtkLayout" id="layout_key">
+            <property name="width_request">54</property>
+            <property name="height_request">54</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkEventBox" id="key_box">
+                <property name="width_request">54</property>
+                <property name="height_request">54</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkImage" id="key">
+                    <property name="width_request">54</property>
+                    <property name="height_request">54</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="pixbuf">key.png</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">678</property>
+            <property name="y">187</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="image1">
+            <property name="width_request">762</property>
+            <property name="height_request">299</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">klava.jpg</property>
+          </object>
         </child>
       </object>
     </child>

@@ -163,8 +163,11 @@ class myGUI(gobject.GObject):
 #        self.widgets.window2.connect('destroy', self.on_window_delete_event)
         self.widgets.window2.connect('key_press_keyboard', self.on_keyboard_signal)
 #        self.widgets.window2.set_destroy_with_parent(True)
+        
+        self.action = Actions()
+        self.action.connect("time_to_update", self.update)
 
-        self.widgets.window3 = Keyboardmain()
+        self.widgets.window3 = Keyboardmain(self.action)
 #        self.widgets.window2.connect('destroy', self.on_window_delete_event)
         self.widgets.window3.connect('key_press_keyboard_main', self.on_main_kayboard_signal)
 #        self.widgets.window3.set_destroy_with_parent(True)
@@ -175,9 +178,6 @@ class myGUI(gobject.GObject):
         self.set_screen()
 #        self.highliteBTN()
 
-
-        temp = 100
-#        gobject.timeout_add(int(temp), self.timer_interrupt)
 #        self.widgets = Widgets(self.xml)
 
         # Finally, show the window 
@@ -186,153 +186,16 @@ class myGUI(gobject.GObject):
         self.widgets.window1.connect('destroy', self.on_window_delete_event)
         self.widgets.window1.show()
 
-
-# ==========================================================
-# Update widgets
-# ==========================================================
-    def update(self):
-#        if not running():
-#            return
-        try:
-            self.cnc_stat.poll()
-        except linuxcnc.error, detail:
-            print "error", detail
-            del self.cnc_stat
-            return
-#        self.after = self.win.after(update_ms, self.update)
-
-#        self.win.set_current_line(self.cnc_stat.id or self.cnc_stat.motion_line)
-
-#        self.data.speed = self.cnc_stat.current_vel
-
-#        limits = soft_limits()
-
-#        if (
-#                self.logger.npts != self.lastpts
-#                or limits != o.last_limits
-        if (self.cnc_stat.actual_position != self.data.last_position
-                or self.cnc_stat.joint_actual_position != self.data.last_joint_position
-                or self.cnc_stat.homed != self.data.last_homed
-                or self.cnc_stat.g5x_offset != self.data.last_g5x_offset
-                or self.cnc_stat.g92_offset != self.data.last_g92_offset
-                or self.cnc_stat.g5x_index != self.data.last_g5x_index
-                or self.cnc_stat.rotation_xy != self.data.last_rotation_xy
-                or self.cnc_stat.limit != self.data.last_limit
-                or self.cnc_stat.tool_table[0] != self.data.last_tool
-                or self.cnc_stat.motion_mode != self.data.last_motion_mode
-                or abs(self.cnc_stat.current_vel - self.data.last_speed) > .01):
-#            o.redraw_soon()
-#            self.data.last_limits = limits
-            self.data.last_limit = self.cnc_stat.limit
-            self.data.last_homed = self.cnc_stat.homed
-            self.data.last_position = self.cnc_stat.actual_position
-            self.data.last_g5x_offset = self.cnc_stat.g5x_offset
-            self.data.last_g92_offset = self.cnc_stat.g92_offset
-            self.data.last_g5x_index = self.cnc_stat.g5x_index
-            self.data.last_rotation_xy = self.cnc_stat.rotation_xy
-            self.data.last_motion_mode = self.cnc_stat.motion_mode
-            self.data.last_tool = self.cnc_stat.tool_table[0]
-            self.data.last_joint_position = self.cnc_stat.joint_actual_position
-            self.data.last_speed = self.cnc_stat.current_vel
-#            self.data.lastpts = self.logger.npts
-
-#        root_window.update_idletasks()
-        self.data.exec_state = self.cnc_stat.exec_state
-        self.data.interp_state = self.cnc_stat.interp_state
-        self.data.queued_mdi_commands = self.cnc_stat.queued_mdi_commands
-#        if hal_present == 1 :
-#            set_manual_mode = comp["set-manual-mode"]
-#            if self.set_manual_mode != set_manual_mode:
-#                 self.set_manual_mode = set_manual_mode
-#                 if self.set_manual_mode:
-#                     root_window.tk.eval(pane_top + ".tabs raise manual")
-#            notifications_clear = comp["notifications-clear"]
-#            if self.notifications_clear != notifications_clear:
-#                 self.notifications_clear = notifications_clear
-#                 if self.notifications_clear:
-#                     notifications.clear()
-#            notifications_clear_info = comp["notifications-clear-info"]
-#            if self.notifications_clear_info != notifications_clear_info:
-#                 self.notifications_clear_info = notifications_clear_info
-#                 if self.notifications_clear_info:
-#                     notifications.clear("info")
-#            notifications_clear_error = comp["notifications-clear-error"]
-#            if self.notifications_clear_error != notifications_clear_error:
-#                 self.notifications_clear_error = notifications_clear_error
-#                 if self.notifications_clear_error:
-#                     notifications.clear("error")
-        self.data.task_mode = self.cnc_stat.task_mode
-        self.data.task_state = self.cnc_stat.task_state
-        self.data.task_paused = self.cnc_stat.task_paused
-        self.data.taskfile = self.cnc_stat.file
-        self.data.interp_pause = self.cnc_stat.paused
-        self.data.mist = self.cnc_stat.mist
-        self.data.flood = self.cnc_stat.flood
-        self.data.brake = self.cnc_stat.spindle_brake
-        self.data.spindledir = self.cnc_stat.spindle_direction
-        self.data.motion_mode = self.cnc_stat.motion_mode
-        self.data.optional_stop = self.cnc_stat.optional_stop
-        self.data.block_delete = self.cnc_stat.block_delete
-#        if time.time() > spindlerate_blackout:
-        self.data.spindlerate = int(100 * self.cnc_stat.spindlerate + .5)
-#        if time.time() > feedrate_blackout:
-        self.data.feedrate  = int(100 * self.cnc_stat.feedrate + .5)
-#        if time.time() > maxvel_blackout:
-        m = to_internal_linear_unit(self.cnc_stat.max_velocity)
-        m = m * 25.4
-        self.data.maxvel_speed = float(int(600 * m)/10.0)
-#            root_window.tk.call("update_maxvel_slider")
-        self.data.override_limits = self.cnc_stat.joint[0]['override_limits']
-        on_any_limit = 0
-        for l in self.cnc_stat.limit:
-            if l:
-                on_any_limit = True
-                break
-        self.data.on_any_limit = on_any_limit
-#        global current_tool
-        current_tool = self.cnc_stat.tool_table[0]
-        if current_tool:
-            tool_data = {'tool': current_tool[0], 'zo': current_tool[3], 'xo': current_tool[1], 'dia': current_tool[10]}
-        if current_tool is None:
-            self.data.tool = _("Unknown tool %d") % self.cnc_stat.tool_in_spindle
-        elif tool_data['tool'] == 0 or tool_data['tool'] == -1:
-            self.data.tool = _("No tool")
-        elif current_tool.xoffset == 0 and not lathe:
-            self.data.tool = _("Tool %(tool)d, offset %(zo)g, diameter %(dia)g") % tool_data
-        else:
-            self.data.tool = _("Tool %(tool)d, zo %(zo)g, xo %(xo)g, dia %(dia)g") % tool_data
-        active_codes = []
-        for i in self.cnc_stat.gcodes[1:]:
-            if i == -1: continue
-            if i % 10 == 0:
-                active_codes.append("G%d" % (i/10))
-            else:
-                active_codes.append("G%(ones)d.%(tenths)d" % {'ones': i/10, 'tenths': i%10})
-
-        for i in self.cnc_stat.mcodes[1:]:
-            if i == -1: continue
-            self.data.active_codes.append("M%d" % i)
-
-#        feed_str = "F%.1f" % self.cnc_stat.settings[1]
-#        if feed_str.endswith(".0"): feed_str = feed_str[:-2]
-#        active_codes.append(feed_str)
-#        active_codes.append("S%.0f" % self.cnc_stat.settings[2])
-
-#        codes = " ".join(active_codes)
-#        widgets.code_text.configure(state="normal")
-#        widgets.code_text.delete("0.0", "end")
-#        widgets.code_text.insert("end", codes)
-#        widgets.code_text.configure(state="disabled")
-
-#        user_live_update()
-        self.widgets.window3.update(self.data)
-
-
 # ==========================================================
 # Callbacks
 # ==========================================================
 
     def on_main_kayboard_signal(self, keyboard):
+        parent = None
+        md = gtk.MessageDialog(parent, 
+            gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_INFO, 
+            gtk.BUTTONS_CLOSE, str(self.action.number))
+        md.run()
         print("Signal from main keyboard")
 
     def on_keyboard_signal(self, keyboard):
@@ -341,6 +204,39 @@ class myGUI(gobject.GObject):
         self.widgets[self.data.CURRENTSCREEN].on_key_pressed(keyboard.data)
 #        self.widgets.vcp_mdihistory840d.on_my_signal(keyboard.data)
 
+    def show_msg(self, msg):
+        parent = None
+        md = gtk.MessageDialog(parent, 
+            gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_INFO, 
+            gtk.BUTTONS_CLOSE, str(msg))
+        md.run()
+
+#   Update callback from linuxcnc_actions
+    def update(self, action):
+        # Update keyboard info
+        self.widgets.window3.update()
+        # Update current screen info
+        if self.data.CURRENTSCREEN != None:
+            self.widgets[self.data.CURRENTSCREEN].update()
+
+        #Operating area
+        self.widgets.lbl1a.set_label(self.action.operating_area)
+        #Channel
+        self.widgets.lbl1b.set_label(self.action.channel)
+        #Mode
+        self.widgets.lbl1c.set_label(self.action.mode)
+        #File path (program name)
+        self.widgets.lbl1d.set_label(self.action.program_name)
+        #Channel status
+        self.widgets.lbl2a.set_label(self.action.channel_status)
+        #Channel message
+        self.widgets.lbl2b.set_label(self.action.channel_message[len(self.action.channel_message)-1])
+        #Program status
+        self.widgets.lbl3a.set_label(self.action.program_status)
+        #Flags
+        self.widgets.lbl3b.set_label(self.action.flags)
+        #Alarm message line
+        self.widgets.lbl4.set_label(self.action.alarm_message[len(self.action.alarm_message)-1])
 
 #    def on_change_screen_signal(self, screen):
 #        self.data.CURRENTSCREEN = screen.new_screen
@@ -350,92 +246,9 @@ class myGUI(gobject.GObject):
 #        self.highliteBTN()
 #        print("change-screen")
 
-
-
-        # check linuxcnc for status, error and then update the readout
-    def timer_interrupt(self):        
-#            self.emc.mask()
-#            self.emcstat = linuxcnc.stat()
-#            self.emcerror = linuxcnc.error_channel()
-#            self.emcstat.poll()
-#            self.data.task_mode = self.emcstat.task_mode 
-#            self.status.periodic()
-#            self.data.system = self.status.get_current_system()
-#            e = self.emcerror.poll()
-#            if e:
-#                kind, text = e
-#                print kind,text
-#                if "joint" in text:
-#                    for letter in self.data.axis_list:
-#                        axnum = "xyzabcuvws".index(letter)
-#                            text = text.replace( "joint %d"%axnum,"Axis %s"%letter.upper() )
-#                if kind in (linuxcnc.NML_ERROR, linuxcnc.OPERATOR_ERROR):
-#                    self.notify(_("Error Message"),text,ALERT_ICON,3)
-#                elif kind in (linuxcnc.NML_TEXT, linuxcnc.OPERATOR_TEXT):
-#                    self.notify(_("Message"),text,INFO_ICON,3)
-#                elif kind in (linuxcnc.NML_DISPLAY, linuxcnc.OPERATOR_DISPLAY):
-#                    self.notify(_("Message"),text,INFO_ICON,3)
-#            self.emc.unmask()
-#            if "periodic" in dir(self.handler_instance):
-#                    self.handler_instance.periodic()
-#            else:
-#                    self.update_position()
-        # Check for messages
-        try:
-            message = self.error_channel.poll()
-            if message:
-                self._show_message(message)
-        except:
-            pass
-#               print ("Problem with error chanel")
-            return True
-
-    # Format Info & Error messages and display at bottom of screen, terminal
-    def _show_message(self, message):
-        kind, text = message # Unpack
-    
-#           if "joint" in text:
-#                # Replace "joint N" with "L axis"
-#                for axis in self.axis_letter_list:
-#                    joint = 'XYZABCUVWS'.index(axis)
-#                    text = text.replace("joint {0}".format(joint), "{0} axis".format(axis))
-#                text = text.replace("joint -1", "all axes")
-
-        if text == "" or text is None:
-            text = "Unknown error!"
-
-            # Print to terminal and display at bottom of screen
-        if kind in (linuxcnc.NML_ERROR, linuxcnc.OPERATOR_ERROR, 'ERROR'):
-#               if kind != "ERROR":
-#                        log.error(text)
-            kind = "ERROR"
-            color = 'red'
-#                    self.hal['error'] = True
-                    # flash the border in the message area
-#                    self.set_animation('error_image', 'error_flash.gif')
-#                    self.new_error = True
-        elif kind in (linuxcnc.NML_TEXT, linuxcnc.OPERATOR_TEXT, 'INFO'):
-#                    if kind != "INFO":
-#                        log.info(text)
-            kind = "INFO"
-            color = 'blue'
-        elif kind in (linuxcnc.NML_DISPLAY, linuxcnc.OPERATOR_DISPLAY, 'MSG'):
-#                    if kind != "MSG":
-#                        log.info(text)
-            kind = "MSG"
-            color = 'blue'
-        elif kind == 'WARN':
-            kind = "WARNING"
-            color = 'orange'
-        else:
-            kind == "ERROR"
-            color = 'red'
-#                    log.error(text)
-
-#            msg = '<span size=\"11000\" weight=\"bold\" foreground=\"{0}\">{1}:' \
-#            '</span> {2}'.format(color, kind, text)
-        msg = kind + text
-        self.widgets.lbl4.set_markup(msg)
+# ==========================================================
+# Functions
+# ==========================================================
 
     def set_labels(self, data = None):
         for n in range (0, 8):
@@ -553,6 +366,7 @@ class myGUI(gobject.GObject):
             self.data.CURRENTSCREEN = screen.crnt_screen
 #        if renew:
 #        self.widgets[self.data.CURRENTSCREEN].actions_on_enter()
+        self.widgets[self.data.CURRENTSCREEN].action = self.action
         if self.data.CURRENTSCREEN=="screen_gfile" and self.widgets["screen_open_file"].path_to_file != None:
             self.widgets[self.data.CURRENTSCREEN].gfile.filename = self.widgets["screen_open_file"].path_to_file
             self.widgets[self.data.CURRENTSCREEN].gfile.read_file()
@@ -565,6 +379,7 @@ class myGUI(gobject.GObject):
 #        self.highliteBTN()
 
 #    def check_text(self):
+
 #        print("OK")
 
 ####################################################

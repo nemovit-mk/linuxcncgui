@@ -56,6 +56,9 @@ class Screen_Gfile(gtk.VBox):
         self.bldr.add_from_file(gladefile)
         self.screen = self.bldr.get_object("container")
 
+
+        self.action = gobject.GObject()
+
         self.sensitive = True
         
         self.path_to_file = None
@@ -135,6 +138,9 @@ class Screen_Gfile(gtk.VBox):
 #        eventbox.add(label)
 #        self.widget[mdivbox].pack_start(eventbox,True,False,0)
 #        eventbox.show()
+
+    def update(self):
+        print("OK")
 
     def on_key_pressed(self, data):
         if self.sensitive:

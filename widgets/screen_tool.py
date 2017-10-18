@@ -54,6 +54,7 @@ class Screen_Tool(gtk.VBox):
 
         self.sensitive = True
 
+        self.action = gobject.GObject()
 
         self.labelX = labels_X("screen_tool")
         self.labelY = labels_Y("screen_tool")
@@ -123,6 +124,9 @@ class Screen_Tool(gtk.VBox):
 #        self.reload()
         self.show_all()
 
+
+    def update(self):
+        print("OK")
 
 ####################################################
 #   Tooltable
