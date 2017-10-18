@@ -13,14 +13,15 @@ class Widgets:
         if r is None: raise IndexError, "No widget %r" % attr
         return r
     def get_list(self, attr, parent = None):
-	l = self._xml.get_objects()
-	item_list = []
-	for item in l:
-	     if isinstance(item, attr): 
-		if parent != None:
-#			print ("parent %r  %r"% (item.get_parent(), parent))
-			if item.get_parent() == parent:			
-				item_list.append(item)
-	        else: item_list.append(item)
-	if len(item_list) < 1: raise IndexError, "No such widgets %r %r" % (type(item),len(l))
+        l = self._xml.get_objects()
+        item_list = []
+        for item in l:
+            if isinstance(item, attr): 
+                if parent != None:
+#                   print ("parent %r  %r"% (item.get_parent(), parent))
+                    if item.get_parent() == parent:            
+                        item_list.append(item)
+                else: 
+                    item_list.append(item)
+        if len(item_list) < 1: return None
         return item_list

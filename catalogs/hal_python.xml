@@ -147,6 +147,21 @@
         <glade-widget-class name="EMC_Action_Save" generic-name="vcp_action_save" title="VCP Action Save" icon-name='gtk-save'/>
         <glade-widget-class name="EMC_Action_SaveAs" generic-name="vcp_action_saveas" title="VCP Action Save As" icon-name='gtk-save-as'/>
         <glade-widget-class name="EMC_SourceView" generic-name="vcp_sourceview" title="VCP SourceView"/>
+        <glade-widget-class name="Screen_Open_File" generic-name="screen_open_file" title="VCP Screen_Open_File">
+            <properties>
+                <property id="size" query="False" default="0" visible="False"/>
+            </properties>
+        </glade-widget-class>
+        <glade-widget-class name="Screen_Gfile" generic-name="screen_gfile" title="VCP Screen_Gfile">
+            <properties>
+                <property id="size" query="False" default="0" visible="False"/>
+            </properties>
+        </glade-widget-class>
+        <glade-widget-class name="Main_Screen" generic-name="main_screen" title="VCP Main_Screen">
+            <properties>
+                <property id="size" query="False" default="0" visible="False"/>
+            </properties>
+        </glade-widget-class>
         <glade-widget-class name="Screen_Rvar" generic-name="vcp_screen_rvar" title="VCP Screen Rvar">
             <properties>
                 <property id="size" query="False" default="0" visible="False"/>
@@ -215,6 +230,9 @@
         
         <glade-widget-class-ref name="EMC_SourceView"/>
         <glade-widget-class-ref name="EMC_MDIHistory"/>
+        <glade-widget-class-ref name="Screen_Open_File"/>
+        <glade-widget-class-ref name="Screen_Gfile"/>
+        <glade-widget-class-ref name="Main_Screen"/>
         <glade-widget-class-ref name="Screen_Rvar"/>
         <glade-widget-class-ref name="Screen_Tool"/>
         <glade-widget-class-ref name="EMC_MDIHistory840D"/>

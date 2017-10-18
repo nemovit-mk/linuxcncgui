@@ -47,6 +47,10 @@ class Keyboard(gobject.GObject):
 
         self.widgets = Widgets(self.builder)
 
+        self.widgets.window2.connect('destroy', self.on_window_destroy)
+        
+#        self.set_destroy_with_parent(True)
+
         self.SHIFTED = False
 
         self.colors = Color()
@@ -421,6 +425,8 @@ class Keyboard(gobject.GObject):
 #    def set_parent(self, parent):
 #        self.parent = parent
 
+    def on_window_destroy(self, widget):
+        self.widgets.window2.destroy()
 
 # ==========================================================
 # Creating signal

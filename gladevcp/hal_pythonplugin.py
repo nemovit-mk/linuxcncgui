@@ -37,6 +37,9 @@ from hal_filechooser import *
 
 from hal_sourceview import *
 from hal_mdihistory import *
+from widgets.main_screen import Main_Screen
+from widgets.screen_open_file import Screen_Open_File
+from widgets.screen_gfile import Screen_Gfile
 from widgets.screen_tool import Screen_Tool
 from widgets.screen_rvar import Screen_Rvar
 from widgets.hal_mdi840d import *

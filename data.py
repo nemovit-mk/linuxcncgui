@@ -9,8 +9,45 @@ _SPINDLE_INPUT = 1;_PERCENT_INPUT = 2;_VELOCITY_INPUT = 3;_DEGREE_INPUT = 4
 # here we intialize the data
 class Data:
     def __init__(self):
-        self.CURRENTSCREEN = "screen_rvar"
+        self.CURRENTSCREEN = "main_screen"
+        self.LGHTLABEL = ""
         # constants for mode idenity
+        self.speed = 0
+        self.last_limit = 0
+        self.last_homed = False
+        self.last_position = 0
+        self.last_g5x_offset = 0
+        self.last_g92_offset = 0
+        self.last_g5x_index = 0
+        self.last_rotation_xy = 0
+        self.last_motion_mode = 0
+        self.last_tool = 0
+        self.last_joint_position = 0
+        self.last_speed = 0
+
+        self.exec_state = 0
+        self.interp_state = 0
+        self.queued_mdi_commands = 0
+        self.task_mode = 0
+        self.task_state = 0
+        self.task_paused = 0
+        self.taskfile = 0
+        self.interp_pause = 0
+        self.mist = 0
+        self.flood = 0
+        self.brake = 0
+        self.spindledir = 0
+        self.motion_mode = 0
+        self.optional_stop = 0
+        self.block_delete = 0
+
+        self.override_limits = 0
+        self.on_any_limit = 0
+        self.tool = 0
+
+        self.active_codes = []
+
+
         self._MAN = 0
         self._MDI = 1
         self._AUTO = 2
@@ -22,9 +59,9 @@ class Data:
 #        self.CONFIGPATH = CONFIGPATH
 #        self.BASEPATH = BASE
 
-        self.audio_available = False
-        self.use_screen2 = False
-        self.theme_name = "Follow System Theme"
+#        self.audio_available = False
+#        self.use_screen2 = False
+#        self.theme_name = "Follow System Theme"
         self.abs_textcolor = ""
         self.rel_textcolor = ""
         self.dtg_textcolor = ""
